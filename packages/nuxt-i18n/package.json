@@ -1,0 +1,40 @@
+{
+  "name": "@kazupon/nuxt-i18n-next",
+  "version": "0.0.3",
+  "description": "⚠️ This nuxt module is PoC of `@nuxtjs/i18n` next",
+  "homepage": "https://github.com/kazupon/nuxt-i18n-next#readme",
+  "bugs": {
+    "url": "https://github.com/kazupon/nuxt-i18n-next/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazupon/nuxt-i18n-next.git",
+    "directory": "packages/nuxt-i18n"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "exports": "./module.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "module.cjs",
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild"
+  },
+  "dependencies": {
+    "@nuxt/kit": "npm:@nuxt/kit-edge@0.10.0-27219866.bba79f4",
+    "@nuxtjs/i18n": "^7.0.3",
+    "upath": "^2.0.1"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.15.8",
+    "unbuild": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

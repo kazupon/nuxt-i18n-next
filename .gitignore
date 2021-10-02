@@ -7,6 +7,10 @@ node_modules
 .vscode
 debug.log
 
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+
 *.log
 *.swp
 *~

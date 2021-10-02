@@ -3,7 +3,7 @@ import { defineNuxtModule, isNuxt2, installModule } from '@nuxt/kit'
 import type { Options } from '@nuxtjs/i18n'
 export type NuxtI18nNextOptions = Options
 
-const IntlifyModule = defineNuxtModule<NuxtI18nNextOptions>({
+const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
   name: '@kazupon/nuxt-i18n-next',
   configKey: 'i18n',
   defaults: {},
@@ -15,4 +15,4 @@ const IntlifyModule = defineNuxtModule<NuxtI18nNextOptions>({
   }
 })
 
-export default IntlifyModule
+export default NuxtI18nModule
