@@ -213,8 +213,8 @@ __metadata:
     "@nuxt/kit": "npm:@nuxt/kit-edge@0.10.0-27219866.bba79f4"
     "@nuxt/types": ^2.15.8
     "@nuxtjs/i18n": ^7.0.3
+    pathe: ^0.2.0
     unbuild: latest
-    upath: ^2.0.1
   languageName: unknown
   linkType: soft
 
