@@ -39,7 +39,7 @@
     "lint:fix": "npm-run-all --parallel \"lint:codes --fix\""
   },
   "dependencies": {
-    "@nuxt/kit": "npm:@nuxt/kit-edge@0.10.0-27217109.e13baf9",
+    "@nuxt/kit": "npm:@nuxt/kit-edge@0.10.0-27219866.bba79f4",
     "@nuxtjs/i18n": "^7.0.3",
     "upath": "^2.0.1"
   },

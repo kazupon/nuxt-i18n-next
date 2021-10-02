@@ -177,10 +177,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@nuxt/kit@npm:@nuxt/kit-edge@0.10.0-27217109.e13baf9":
-  version "0.10.0-27217109.e13baf9"
-  resolved "https://registry.yarnpkg.com/@nuxt/kit-edge/-/kit-edge-0.10.0-27217109.e13baf9.tgz#ac4791f219292c185263641e158eb0b6b14a9518"
-  integrity sha512-4ZpotsjpkhDn7JBbNj2z4bM/nEjbFk1VRY8p7YUrt+S2Yq+gyTihilT2ku1GT3gAmR5ZS05FCG3rIbJsepaxhw==
+"@nuxt/kit@npm:@nuxt/kit-edge@0.10.0-27219866.bba79f4":
+  version "0.10.0-27219866.bba79f4"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit-edge/-/kit-edge-0.10.0-27219866.bba79f4.tgz#6e01c2d8cfca37f93d06f26891e93a2ff7147599"
+  integrity sha512-TpWTuwBhKE4faB1ysciB90sGu9d1NNvotkikjmTj+WNpMr/54C5LTzr8YYxCepuLNTvZ30Ib2s1xN/suyOAZDQ==
   dependencies:
     consola "^2.15.3"
     create-require "^1.1.1"
@@ -189,8 +189,8 @@
     globby "^11.0.4"
     hash-sum "^2.0.0"
     hookable "^5.0.0"
-    jiti "^1.12.5"
-    lodash "^4.17.21"
+    jiti "^1.12.6"
+    lodash.template "^4.5.0"
     pathe "^0.2.0"
     rc9 "^1.2.0"
     scule "^0.2.1"
@@ -1712,10 +1712,15 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-jiti@^1.10.1, jiti@^1.11.0, jiti@^1.12.5:
+jiti@^1.10.1, jiti@^1.11.0:
   version "1.12.5"
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.12.5.tgz#67ee49e95299ed6c18ffdcc2cfe0d2f65432d22b"
   integrity sha512-+K46njcZW6E/OPWWHImm3G1u+fYVcKU7vqc8b36oVtfi9l3moaSGtsPydaRf2gPuVxh13G1KSCVlW0DfyYUjPQ==
+
+jiti@^1.12.6:
+  version "1.12.6"
+  resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.12.6.tgz#8884d53a10bd571e0e85787994d97cfcc48ac6f9"
+  integrity sha512-drQ/qnYriF9KiU47sRF0rTvfQmJo4JEmFMhCk2SJIsUj+hGnQaxkwaKfyvK9KenX20JNTQmVfJOz7VWe0cSntw==
 
 joycon@^3.0.1:
   version "3.0.1"
@@ -1818,6 +1823,11 @@ loader-utils@^2.0.0:
     emojis-list "^3.0.0"
     json5 "^2.1.2"
 
+lodash._reinterpolate@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
+  integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+
 lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
@@ -1828,15 +1838,25 @@ lodash.merge@^4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
+lodash.template@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
+  integrity sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==
+  dependencies:
+    lodash._reinterpolate "^3.0.0"
+    lodash.templatesettings "^4.0.0"
+
+lodash.templatesettings@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-4.2.0.tgz#e481310f049d3cf6d47e912ad09313b154f0fb33"
+  integrity sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==
+  dependencies:
+    lodash._reinterpolate "^3.0.0"
+
 lodash.truncate@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
-
-lodash@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 lru-cache@^6.0.0:
   version "6.0.0"
