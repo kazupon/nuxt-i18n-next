@@ -8,6 +8,7 @@ const IntlifyModule = defineNuxtModule<NuxtI18nNextOptions>({
   configKey: 'i18n',
   defaults: {},
   async setup(options, nuxt) {
+    console.log('setup isNuxt2?', isNuxt2(nuxt))
     if (isNuxt2(nuxt)) {
       await installModule(nuxt, require.resolve('@nuxtjs/i18n'))
     }
