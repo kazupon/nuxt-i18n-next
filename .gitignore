@@ -15,3 +15,4 @@ debug.log
 *.swp
 *~
 .env
+.nuxt
