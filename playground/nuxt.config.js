@@ -33,6 +33,31 @@ export default {
     '@kazupon/nuxt-i18n-next'
   ],
 
+  i18n: {
+    langDir: 'locales',
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json',
+        name: 'English'
+      },
+      {
+        code: 'ja',
+        file: 'ja.json',
+        name: 'Japanses'
+      },
+      {
+        code: 'fr',
+        file: 'fr.json',
+        name: 'Français'
+      }
+    ],
+    defaultLocale: 'ja',
+    vueI18n: {
+      fallbackLocale: 'en'
+    }
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
 
