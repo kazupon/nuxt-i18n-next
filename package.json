@@ -11,7 +11,7 @@
   },
   "workspaces": [
     "packages/*",
-    "playground"
+    "playground/*"
   ],
   "license": "MIT",
   "author": {
@@ -24,7 +24,7 @@
   "scripts": {
     "build": "run-p \"build:*\"",
     "build:nuxt-i18n": "cd packages/nuxt-i18n && yarn build",
-    "play": "cd playground && yarn dev",
+    "play": "cd playground/nuxt2 && yarn dev",
     "fix": "run-p \"lint:fix format:fix\"",
     "format:fix": "run-p \"format:prettier -- --write\"",
     "format:prettier": "prettier --config .prettierrc --ignore-path .prettierignore '**/*.{js,json,html}'",

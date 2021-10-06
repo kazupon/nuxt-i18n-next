@@ -8532,9 +8532,9 @@ fsevents@~2.3.2:
   languageName: unknown
   linkType: soft
 
-"nuxt-i18n-playground@workspace:playground":
+"nuxt-i18n-playground@workspace:playground/nuxt2":
   version: 0.0.0-use.local
-  resolution: "nuxt-i18n-playground@workspace:playground"
+  resolution: "nuxt-i18n-playground@workspace:playground/nuxt2"
   dependencies:
     "@kazupon/nuxt-i18n-next": latest
     "@nuxt/types": ^2.15.7
