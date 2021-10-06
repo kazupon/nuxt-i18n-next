@@ -24,7 +24,9 @@
   "scripts": {
     "build": "run-p \"build:*\"",
     "build:nuxt-i18n": "cd packages/nuxt-i18n && yarn build",
-    "play": "cd playground/nuxt2 && yarn dev",
+    "play:nuxt2": "cd playground/nuxt2 && yarn dev",
+    "play:nuxt3": "cd playground/nuxt3 && yarn dev",
+    "play:bridge": "cd playground/bridge && yarn dev",
     "fix": "run-p \"lint:fix format:fix\"",
     "format:fix": "run-p \"format:prettier -- --write\"",
     "format:prettier": "prettier --config .prettierrc --ignore-path .prettierignore '**/*.{js,json,html}'",

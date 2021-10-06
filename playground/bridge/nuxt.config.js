@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxt-i18n-playground-nuxt2',
+    title: 'nuxt-i18n-playground-bridge',
     htmlAttrs: {
       lang: 'en'
     },
@@ -28,10 +28,15 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
+    '@nuxt/bridge',
     '@kazupon/nuxt-i18n-next'
   ],
+
+  bridge: {
+    nitro: true,
+    typescript: true
+    // vite: true
+  },
 
   i18n: {
     langDir: 'locales',

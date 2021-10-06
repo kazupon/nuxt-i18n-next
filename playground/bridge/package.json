@@ -1,10 +1,10 @@
 {
-  "name": "nuxt-i18n-playground-nuxt2",
+  "name": "nuxt-i18n-playground-bridge",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "nuxt generate",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@kazupon/nuxt-i18n-next": "latest",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@3.0.0-27225586.ac16127",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0"
   }
