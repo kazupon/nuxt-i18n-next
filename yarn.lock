@@ -1385,7 +1385,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@kazupon/nuxt-i18n-next@workspace:packages/nuxt-i18n"
   dependencies:
-    "@nuxt/kit": "npm:@nuxt/kit-edge@0.10.0-27219866.bba79f4"
+    "@nuxt/kit": "npm:@nuxt/kit-edge@3.0.0-27226619.4572661"
     "@nuxt/types": ^2.15.8
     "@nuxtjs/i18n": ^7.0.3
     pathe: ^0.2.0
@@ -1681,30 +1681,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:@nuxt/kit-edge@0.10.0-27219866.bba79f4":
-  version: 0.10.0-27219866.bba79f4
-  resolution: "@nuxt/kit-edge@npm:0.10.0-27219866.bba79f4"
-  dependencies:
-    consola: ^2.15.3
-    create-require: ^1.1.1
-    defu: ^5.0.0
-    dotenv: ^10.0.0
-    globby: ^11.0.4
-    hash-sum: ^2.0.0
-    hookable: ^5.0.0
-    jiti: ^1.12.6
-    lodash.template: ^4.5.0
-    pathe: ^0.2.0
-    rc9: ^1.2.0
-    scule: ^0.2.1
-    std-env: ^2.3.1
-    ufo: ^0.7.9
-    unctx: ^1.0.2
-    untyped: ^0.2.9
-  checksum: 68e6902ad95b2739486aacf4b6d80a905e5d55fc2e17fd35e16deb74420ce1556e4320bd5b591d1616a111dc1773417cf69b7e7179ae8935059d7064b004aa09
-  languageName: node
-  linkType: hard
-
 "@nuxt/kit@npm:@nuxt/kit-edge@3.0.0-27225586.ac16127":
   version: 3.0.0-27225586.ac16127
   resolution: "@nuxt/kit-edge@npm:3.0.0-27225586.ac16127"
@@ -1728,6 +1704,32 @@ __metadata:
     unctx: ^1.0.2
     untyped: ^0.2.9
   checksum: 54bf8badd79173fd781759d447b165c6ea257fd6cea9c6ef707135ce45ec65c66f841cbe8b5635a39897df324404fda52a4cdcfca4f022bcdd5003a0cb606982
+  languageName: node
+  linkType: hard
+
+"@nuxt/kit@npm:@nuxt/kit-edge@3.0.0-27226619.4572661":
+  version: 3.0.0-27226619.4572661
+  resolution: "@nuxt/kit-edge@npm:3.0.0-27226619.4572661"
+  dependencies:
+    consola: ^2.15.3
+    create-require: ^1.1.1
+    defu: ^5.0.0
+    dotenv: ^10.0.0
+    globby: ^11.0.4
+    hash-sum: ^2.0.0
+    hookable: ^5.0.0
+    jiti: ^1.12.6
+    lodash.template: ^4.5.0
+    mlly: ^0.2.5
+    pathe: ^0.2.0
+    rc9: ^1.2.0
+    scule: ^0.2.1
+    semver: ^7.3.5
+    std-env: ^2.3.1
+    ufo: ^0.7.9
+    unctx: ^1.0.2
+    untyped: ^0.2.9
+  checksum: aa152ac04e6cd2e930e89e46be1683c16e33a202e18722164733b96034657ec65e87a1adc7046db01c79a505b07c10a7537722d55b10e28ab1907d27c5acf71f
   languageName: node
   linkType: hard
 
