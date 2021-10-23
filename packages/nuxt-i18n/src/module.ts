@@ -4,6 +4,9 @@ import {
   defineNuxtModule,
   isNuxt2,
   installModule,
+  resolveModule,
+  tryResolvePath,
+  tryRequireModule,
   checkNuxtCompatibilityIssues
 } from '@nuxt/kit'
 import { setupVueI18nBridge } from './vue-i18n'
@@ -27,7 +30,7 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
       await installModule(nuxt, _require.resolve('@nuxtjs/i18n'))
 
       // check whether `@nuxt/bridge` is installed
-      const installed = await isInsalledNuxtBridge(nuxt)
+      const installed = await isInstalledNuxtBridge(nuxt)
       if (installed) {
         setupVueI18nBridge(nuxt)
         setupCompositionApi(nuxt)
@@ -40,7 +43,11 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
   }
 })
 
-async function isInsalledNuxtBridge(nuxt: Nuxt, v = true): Promise<boolean> {
+async function isInstalledNuxtBridge(nuxt: Nuxt, v = true): Promise<boolean> {
+  const ss = tryRequireModule('@nuxt/bridge)')
+  console.log('tryRequireModule: @nuxt/bridge', ss)
+  const s = resolveModule('@nuxt/bridge')
+  console.log('resolveModule: @nuxt/bridge', s)
   return Promise.resolve(v)
   /*
   // TODO: 

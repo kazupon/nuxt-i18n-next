@@ -5,16 +5,18 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt generate",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "nuxt-edge": "latest"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.14"
   },
   "devDependencies": {
     "@kazupon/nuxt-i18n-next": "latest",
-    "@nuxt/bridge": "npm:@nuxt/bridge-edge@3.0.0-27225586.ac16127",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@3.0.0-27249044.7d918e1",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0"
   }

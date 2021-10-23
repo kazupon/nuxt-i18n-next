@@ -1,4 +1,6 @@
-export default {
+import { defineNuxtConfig } from '@nuxt/bridge'
+
+export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -28,15 +30,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxt/bridge',
     '@kazupon/nuxt-i18n-next'
   ],
-
-  bridge: {
-    nitro: true,
-    typescript: true
-    // vite: true
-  },
 
   i18n: {
     langDir: 'locales',
@@ -68,4 +63,4 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
-}
+})

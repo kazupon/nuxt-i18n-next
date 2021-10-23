@@ -10,8 +10,7 @@
     "url": "git+https://github.com/kazupon/nuxt-i18n-next.git"
   },
   "workspaces": [
-    "packages/*",
-    "playground/*"
+    "packages/*"
   ],
   "license": "MIT",
   "author": {
@@ -22,11 +21,23 @@
     "@kazupon/nuxt-i18n-next": "workspace:./packages/nuxt-i18n"
   },
   "scripts": {
-    "build": "run-p \"build:*\"",
-    "build:nuxt-i18n": "cd packages/nuxt-i18n && yarn build",
-    "play:nuxt2": "cd playground/nuxt2 && yarn dev",
-    "play:nuxt3": "cd playground/nuxt3 && yarn dev",
-    "play:bridge": "cd playground/bridge && yarn dev",
+    "setup": "run-s \"build:i18n\" \"install:nuxt2\" \"install:bridge\" \"install:nuxt3\"",
+    "install:nuxt2": "cd playground/nuxt2 && npm i --legacy-peer-deps",
+    "install:bridge": "cd playground/bridge && npm i --legacy-peer-deps",
+    "install:nuxt3": "cd playground/nuxt3 && npm i --legacy-peer-deps",
+    "clean": "run-p \"uninstall:*\"",
+    "uninstall:nuxt2": "cd playground/nuxt2 && rm -rf node_modules package-lock.json",
+    "uninstall:bridge": "cd playground/bridge && rm -rf node_modules package-lock.json",
+    "uninstall:nuxt3": "cd playground/nuxt3 && rm -rf node_modules package-lock.json",
+    "build:all": "run-s \"build:i18n\" \"build:play\"",
+    "build:i18n": "cd packages/nuxt-i18n && yarn build",
+    "build:play": "run-p \"build:nuxt2\" \"build:bridge\" \"build:nuxt3\"",
+    "build:nuxt2": "cd playground/nuxt2 && npm run build",
+    "build:bridge": "cd playground/bridge && npm run build",
+    "build:nuxt3": "cd playground/nuxt3 && npm run build",
+    "play:nuxt2": "cd playground/nuxt2 && npm run dev",
+    "play:bridge": "cd playground/bridge && npm run dev",
+    "play:nuxt3": "cd playground/nuxt3 && npm run dev",
     "fix": "run-p \"lint:fix format:fix\"",
     "format:fix": "run-p \"format:prettier -- --write\"",
     "format:prettier": "prettier --config .prettierrc --ignore-path .prettierignore '**/*.{js,json,html}'",
@@ -35,12 +46,12 @@
     "lint:fix": "run-p \"lint:codes --fix\""
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
-    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.4.0",
+    "prettier": "^2.4.1",
     "typescript": "^4.4.3",
     "yarn-run-all": "^3.1.1"
   },

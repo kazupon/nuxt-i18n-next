@@ -16,3 +16,4 @@ debug.log
 *~
 .env
 .nuxt
+.output

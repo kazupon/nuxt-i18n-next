@@ -1,12 +1,14 @@
 {
+  "name": "nuxt-i18n-playground-nuxt3",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --port 3003",
     "build": "nuxt build",
-    "start": "node .output/server"
+    "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@kazupon/nuxt-i18n-next": "latest",
-    "nuxt3": "latest"
+    "nuxt3": "latest",
+    "@kazupon/nuxt-i18n-next": "latest"
   }
 }
