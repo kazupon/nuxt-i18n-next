@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm_config_yes=true npx @plaidev/link-local-dependencies@1.0.2",
     "dev": "nuxt dev --port 3003",
     "build": "nuxt build",
     "start": "node .output/server/index.mjs"
   },
+  "localDependencies": {
+    "@kazupon/nuxt-i18n-next": "../../packages/nuxt-i18n"
+  },
   "devDependencies": {
-    "nuxt3": "latest",
-    "@kazupon/nuxt-i18n-next": "latest"
+    "nuxt3": "latest"
   }
 }

@@ -1,7 +1,6 @@
 # `@nuxtjs/i18n` playground for Nuxt Bridge
 
 ## Requirements
-
 - npm >= v7
 
 ## Scripts

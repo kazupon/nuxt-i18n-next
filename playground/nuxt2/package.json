@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm_config_yes=true npx @plaidev/link-local-dependencies@1.0.2",
+    "local:postinstall": "echo 'this script will be executed after linking local dependencies'",
     "dev": "nuxt --port 3001",
     "build": "nuxt generate",
     "start": "nuxt start"
@@ -11,8 +13,10 @@
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7"
   },
+  "localDependencies": {
+    "@kazupon/nuxt-i18n-next": "../../packages/nuxt-i18n"
+  },
   "devDependencies": {
-    "@kazupon/nuxt-i18n-next": "latest",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0"
   }
