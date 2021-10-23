@@ -28,10 +28,12 @@
   "dependencies": {
     "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
     "@nuxtjs/i18n": "^7.1.0",
+    "debug": "^4.3.2",
     "pathe": "^0.2.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
+    "@types/debug": "^4.1.7",
     "unbuild": "latest"
   },
   "publishConfig": {

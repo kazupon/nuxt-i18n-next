@@ -17,9 +17,6 @@
     "name": "kazuya kawaguchi",
     "email": "kawakazu80@gmail.com"
   },
-  "resolutions": {
-    "@kazupon/nuxt-i18n-next": "workspace:./packages/nuxt-i18n"
-  },
   "scripts": {
     "setup": "run-s \"build:i18n\" \"install:nuxt2\" \"install:bridge\" \"install:nuxt3\"",
     "install:nuxt2": "cd playground/nuxt2 && npm i --legacy-peer-deps",

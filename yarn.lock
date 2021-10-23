@@ -204,6 +204,8 @@ __metadata:
     "@nuxt/kit": "npm:@nuxt/kit-edge@latest"
     "@nuxt/types": ^2.15.8
     "@nuxtjs/i18n": ^7.1.0
+    "@types/debug": ^4.1.7
+    debug: ^4.3.2
     pathe: ^0.2.0
     unbuild: latest
   languageName: unknown
@@ -257,8 +259,8 @@ __metadata:
   linkType: hard
 
 "@nuxt/kit@npm:@nuxt/kit-edge@latest":
-  version: 3.0.0-27248503.1e69bc5
-  resolution: "@nuxt/kit-edge@npm:3.0.0-27248503.1e69bc5"
+  version: 3.0.0-27249044.7d918e1
+  resolution: "@nuxt/kit-edge@npm:3.0.0-27249044.7d918e1"
   dependencies:
     consola: ^2.15.3
     create-require: ^1.1.1
@@ -269,7 +271,7 @@ __metadata:
     hookable: ^5.0.0
     jiti: ^1.12.9
     lodash.template: ^4.5.0
-    mlly: ^0.3.0
+    mlly: ^0.3.1
     pathe: ^0.2.0
     pkg-types: ^0.2.1
     rc9: ^1.2.0
@@ -279,7 +281,7 @@ __metadata:
     ufo: ^0.7.9
     unctx: ^1.0.2
     untyped: ^0.2.9
-  checksum: f215163028c3ee1524746fa9c5c5e8abb280309a7be190b9828e731c1fdb79f1aa510a11953232fb3233098e939825bd6b11cf1defb1eeb023ef7ef14b81c459
+  checksum: 51907851fce116ca8b53b81faab69914689e2e338c18c432632b8c4abb5b66bf7811d0b73e3bedd2018a7f988a26af8e4f7ad47a1ae08dedb80704c3ab2b7e40
   languageName: node
   linkType: hard
 
@@ -539,6 +541,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/debug@npm:^4.1.7":
+  version: 4.1.7
+  resolution: "@types/debug@npm:4.1.7"
+  dependencies:
+    "@types/ms": "*"
+  checksum: 0a7b89d8ed72526858f0b61c6fd81f477853e8c4415bb97f48b1b5545248d2ae389931680b94b393b993a7cfe893537a200647d93defe6d87159b96812305adc
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:*":
   version: 0.0.50
   resolution: "@types/estree@npm:0.0.50"
@@ -626,6 +637,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ms@npm:*":
+  version: 0.7.31
+  resolution: "@types/ms@npm:0.7.31"
+  checksum: daadd354aedde024cce6f5aa873fefe7b71b22cd0e28632a69e8b677aeb48ae8caa1c60e5919bb781df040d116b01cb4316335167a3fc0ef6a63fa3614c0f6da
+  languageName: node
+  linkType: hard
+
 "@types/node-sass@npm:*":
   version: 4.11.2
   resolution: "@types/node-sass@npm:4.11.2"
@@ -636,9 +654,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 16.11.3
-  resolution: "@types/node@npm:16.11.3"
-  checksum: 65682d01d2c10b9658d9b3c160ae72f0b2d626d7d02459434b21a9476518dbab38c852586c160a7a10f7e4271266e11001dd9fa605b4c7a53d3c0c045eaf4a65
+  version: 16.11.4
+  resolution: "@types/node@npm:16.11.4"
+  checksum: 96e08c0f8bb17601c18640a8eac61e2f236fe0c8a6b01a9221c10749157358fb29fdef4b5e264f72559e72f9830e6093f3ab5fef2df90afdad562ffa45ac534c
   languageName: node
   linkType: hard
 
@@ -1838,9 +1856,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.0.1, eslint@npm:^8.0.1":
-  version: 8.0.1
-  resolution: "eslint@npm:8.0.1"
+"eslint@npm:8.1.0, eslint@npm:^8.0.1":
+  version: 8.1.0
+  resolution: "eslint@npm:8.1.0"
   dependencies:
     "@eslint/eslintrc": ^1.0.3
     "@humanwhocodes/config-array": ^0.6.0
@@ -1882,7 +1900,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: 072dde3e188c1274fa92eaf72d233d77b9c6e87ed859dce071b49c243546959ff7aefdb4759abf09841b650ef9d9f013abaae720b0bd64e0e07700ccefaf1208
+  checksum: e0b0c4bddd8673f376730b5bc72876fd0298e0ed9e52fa0707e48854ab0cea6a6a1945dbe2a059db1c867aafba7979b9d770060696e3f0ffc9d4b635ca4bce49
   languageName: node
   linkType: hard
 
@@ -3035,7 +3053,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"mlly@npm:^0.3.0":
+"mlly@npm:^0.3.0, mlly@npm:^0.3.1":
   version: 0.3.1
   resolution: "mlly@npm:0.3.1"
   checksum: c79f289b6a41d745777aa6c3091f1302f28657b3d0c8287d23de20be32b05e7c78d149755cd973c04580481ac9a7c4330968f18af00cc9cd35ecbb455d83cfc6
@@ -4152,8 +4170,8 @@ fsevents@~2.3.2:
   linkType: hard
 
 "unbuild@npm:latest":
-  version: 0.5.10
-  resolution: "unbuild@npm:0.5.10"
+  version: 0.5.11
+  resolution: "unbuild@npm:0.5.11"
   dependencies:
     "@rollup/plugin-alias": ^3.1.8
     "@rollup/plugin-commonjs": ^21.0.1
@@ -4181,7 +4199,7 @@ fsevents@~2.3.2:
     untyped: ^0.2.9
   bin:
     unbuild: bin/unbuild.mjs
-  checksum: 7ac578d68c085d5135ef40c177bb8661da25e0745c7c45fa0f5ea1d7310b47f1ed828be961c3c43ba6d26e1fbaf2f60311bc68d639973dc4024c8e90cee35c9b
+  checksum: ce51f90ce65eb5df2cb295b2bf9bad59cfd852b35b6caa6b9519bc08169b45100a8abcdb169894cc85ec649cb9a487901e3c96df576acb3be1c49a4505d635b2
   languageName: node
   linkType: hard
 
