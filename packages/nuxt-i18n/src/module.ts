@@ -8,8 +8,8 @@ import {
   resolveModule,
   checkNuxtCompatibilityIssues
 } from '@nuxt/kit'
-import { setupVueI18nBridge } from './vue-i18n'
-import { setupCompositionApi } from './composition'
+import { setupNuxtBridge } from './bridge'
+import { setupNuxt3 } from './nuxt3'
 
 import type { Options } from '@nuxtjs/i18n'
 export type NuxtI18nNextOptions = Options
@@ -23,7 +23,7 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
   async setup(options, nuxt) {
     const _require = createRequire(import.meta.url)
 
-    console.log('setup isNuxt2?', isNuxt2(nuxt))
+    debug('setup isNuxt2?', isNuxt2(nuxt))
     if (isNuxt2(nuxt)) {
       // nuxt2 or nuxt bridge
 
@@ -32,15 +32,11 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
 
       // check whether `@nuxt/bridge` is installed
       const installed = await isInstalledNuxtBridge(nuxt)
-      console.log('installed nuxt bridge', installed)
-      if (installed) {
-        setupVueI18nBridge(nuxt)
-        setupCompositionApi(nuxt)
-      }
+      debug('installed nuxt bridge', installed)
+      installed && setupNuxtBridge(nuxt)
     } else {
       // nuxt3
-      // setup for Nuxt 3
-      // TODO:
+      setupNuxt3(nuxt)
     }
   }
 })
@@ -49,6 +45,7 @@ async function isInstalledNuxtBridge(nuxt: Nuxt): Promise<boolean> {
   let ret = false
   try {
     const loadPath = resolveModule('@nuxt/bridge')
+    debug('@nuxt/bridge path', loadPath)
     ret = true
   } catch (e) {
     debug('cannot find @nuxt/bridge')
