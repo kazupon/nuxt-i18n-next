@@ -1,6 +1,5 @@
-import type { Nuxt } from '@nuxt/kit'
+import type { NuxtI18nNextOptions } from './types'
 
-export function setupCompositionApi(nuxt: Nuxt) {
-  // TODO:
+export function setupCompositionApi(options: NuxtI18nNextOptions) {
   console.log('setup Composition Api')
 }

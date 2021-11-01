@@ -54,8 +54,10 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'ja',
     vueI18n: {
+      legacy: false,
       fallbackLocale: 'en'
-    }
+    },
+    bridge: true
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -11,8 +11,9 @@ import {
 import { setupNuxtBridge } from './bridge'
 import { setupNuxt3 } from './nuxt3'
 
-import type { Options } from '@nuxtjs/i18n'
-export type NuxtI18nNextOptions = Options
+import type { NuxtI18nNextOptions } from './types'
+
+export * from './types'
 
 const debug = createDebug('nuxt/i18n:module')
 
@@ -33,10 +34,10 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
       // check whether `@nuxt/bridge` is installed
       const installed = await isInstalledNuxtBridge(nuxt)
       debug('installed nuxt bridge', installed)
-      installed && setupNuxtBridge(nuxt)
+      installed && setupNuxtBridge(options)
     } else {
       // nuxt3
-      setupNuxt3(nuxt)
+      setupNuxt3()
     }
   }
 })
@@ -50,7 +51,7 @@ async function isInstalledNuxtBridge(nuxt: Nuxt): Promise<boolean> {
   } catch (e) {
     debug('cannot find @nuxt/bridge')
   }
-  return Promise.resolve(ret)
+  return ret
   /*
   // TODO: 
   return new Promise((resolve, reject) => {
