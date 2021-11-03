@@ -10,9 +10,25 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import { defineComponent, computed } from '@vue/composition-api'
 
+export default defineComponent({
+  setup() {
+    const availableLocales = computed(() => {
+      return [{
+        code: 'en',
+        name: 'English'
+      }, {
+        code: 'ja',
+        name: '日本語'
+      }]
+    })
+    return { availableLocales }
+  }
+})
+
+/*
 export default Vue.extend({
   computed: {
     availableLocales () {
@@ -20,4 +36,6 @@ export default Vue.extend({
     }
   }
 })
+*/
 </script>
+
