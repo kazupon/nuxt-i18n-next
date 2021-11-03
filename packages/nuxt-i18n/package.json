@@ -36,6 +36,7 @@
     "@types/debug": "^4.1.7",
     "nuxt3": "latest",
     "unbuild": "latest",
+    "vue-demi": "*",
     "vue": "^2"
   },
   "publishConfig": {

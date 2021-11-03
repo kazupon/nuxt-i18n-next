@@ -471,6 +471,7 @@ __metadata:
     pathe: ^0.2.0
     unbuild: latest
     vue: ^2
+    vue-demi: "*"
   languageName: unknown
   linkType: soft
 
@@ -8938,6 +8939,22 @@ fsevents@~2.3.2:
   dependencies:
     bundle-runner: ^0.0.1
   checksum: eb1dd8faa5b0b406770de48bdb58a374baf7727e37d40380fea25b970c398040f312204b548fc6a33c37d2d00eb04392f327f70f23537d2bb11b8185fca7f47d
+  languageName: node
+  linkType: hard
+
+"vue-demi@npm:*":
+  version: 0.12.1
+  resolution: "vue-demi@npm:0.12.1"
+  peerDependencies:
+    "@vue/composition-api": ^1.0.0-rc.1
+    vue: ^3.0.0-0 || ^2.6.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+  bin:
+    vue-demi-fix: bin/vue-demi-fix.js
+    vue-demi-switch: bin/vue-demi-switch.js
+  checksum: d39a43e765e5bc34cf5b378ccff53a521e824f8c55aae6a9163c294364e8af593c5331b3b3b1b679b28096a3142abed5aed07e2dfb581c96f2eba88a176666f2
   languageName: node
   linkType: hard
 

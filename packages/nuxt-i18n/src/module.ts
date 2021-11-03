@@ -4,12 +4,14 @@ import {
   Nuxt,
   defineNuxtModule,
   isNuxt2,
+  isNuxt3,
   installModule,
   resolveModule,
   checkNuxtCompatibilityIssues
 } from '@nuxt/kit'
 import { setupNuxtBridge } from './bridge'
 import { setupNuxt3 } from './nuxt3'
+import { setupComposables } from './composable'
 
 import type { NuxtI18nNextOptions } from './types'
 
@@ -34,10 +36,16 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
       // check whether `@nuxt/bridge` is installed
       const installed = await isInstalledNuxtBridge(nuxt)
       debug('installed nuxt bridge', installed)
-      installed && setupNuxtBridge(options)
-    } else {
+      if (installed) {
+        setupNuxtBridge(options)
+        setupComposables(options)
+      }
+    } else if (isNuxt3(nuxt)) {
       // nuxt3
-      setupNuxt3()
+      setupNuxt3(options)
+      setupComposables(options)
+    } else {
+      // TODO:
     }
   }
 })
