@@ -11,19 +11,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@vue/composition-api'
-
 export default defineComponent({
   setup() {
+    const { nuxt2Context } = useNuxtApp()
+
     const availableLocales = computed(() => {
-      return [{
-        code: 'en',
-        name: 'English'
-      }, {
-        code: 'ja',
-        name: '日本語'
-      }]
+      return nuxt2Context.i18n.locales.filter(i => i.code !== nuxt2Context.i18n.global.locale.value)
     })
+
     return { availableLocales }
   }
 })

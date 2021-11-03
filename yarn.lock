@@ -470,6 +470,7 @@ __metadata:
     nuxt3: latest
     pathe: ^0.2.0
     unbuild: latest
+    vue: ^2
   languageName: unknown
   linkType: soft
 
@@ -9022,6 +9023,13 @@ fsevents@~2.3.2:
     "@vue/server-renderer": 3.2.21
     "@vue/shared": 3.2.21
   checksum: 2c68558f22d784da10b324b914a8f9508cbd3212a003fccb8c17613a300da6929ce71236268c87ee15b64ad8d87db7299619313731496c0656d98d00b01a70b7
+  languageName: node
+  linkType: hard
+
+"vue@npm:^2":
+  version: 2.6.14
+  resolution: "vue@npm:2.6.14"
+  checksum: 23524a1bdca094d62cb3491a46317eed75184b5d61d28fa846ea5d2b241c1cc7084fc67ee259d47a50a6d0bbc33ecaceb7bb52bff81312fe7da07263f3419942
   languageName: node
   linkType: hard
 

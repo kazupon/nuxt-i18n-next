@@ -35,7 +35,8 @@
     "@nuxt/types": "^2.15.8",
     "@types/debug": "^4.1.7",
     "nuxt3": "latest",
-    "unbuild": "latest"
+    "unbuild": "latest",
+    "vue": "^2"
   },
   "publishConfig": {
     "access": "public"
