@@ -414,7 +414,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@intlify/shared@npm:9.2.0-beta.17":
+"@intlify/shared@npm:9.2.0-beta.17, @intlify/shared@npm:beta":
   version: 9.2.0-beta.17
   resolution: "@intlify/shared@npm:9.2.0-beta.17"
   checksum: a90204ecf49f0d4ba70df61de0dc100d36aefff2dc8dc6503f0b1321485bf48fc008d0a360c7d5ce4c9ca30131a1b1eef64fd378dd8232d08edd0383c028e1b0
@@ -462,6 +462,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@kazupon/nuxt-i18n-next@workspace:packages/nuxt-i18n"
   dependencies:
+    "@intlify/shared": beta
     "@nuxt/kit": "npm:@nuxt/kit-edge@latest"
     "@nuxt/types": ^2.15.8
     "@nuxtjs/i18n": "git+https://github.com/kazupon/i18n-module.git#next"
