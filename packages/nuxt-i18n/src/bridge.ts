@@ -21,11 +21,11 @@ export function setupNuxtBridge(options: NuxtI18nNextOptions): void {
   nuxt.options.build.transpile.push('vue')
 
   // Resolve vue-i18n-bridge
-  // for (const [name, entry] of Object.entries(
-  //   nuxt.options.dev ? MODULE_DEV_BRIDGE_ENTRIES : MODULE_PROD_BRIDGE_ENTRIES
-  // )) {
-  //   setupAliasTranspileOptions(nuxt, name, _require.resolve(entry))
-  // }
+  for (const [name, entry] of Object.entries(
+    nuxt.options.dev ? MODULE_DEV_BRIDGE_ENTRIES : MODULE_PROD_BRIDGE_ENTRIES
+  )) {
+    setupAliasTranspileOptions(nuxt, name, _require.resolve(entry))
+  }
 
   // add plugin
   addPluginTemplate({

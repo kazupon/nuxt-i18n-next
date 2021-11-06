@@ -1,18 +1,15 @@
 <template>
   <div>
     <h1>{{ $t('welcome') }}</h1>
-    <nuxt-link
-      v-for="locale in availableLocales"
-      :key="locale.code"
-      :to="switchLocalePath(locale.code)">
-      {{ locale.name }} |
-    </nuxt-link>
+    <span v-for="locale in availableLocales" :key="locale.code">
+      <NuxtLink :to="switchLocalePath(locale.code)">{{ locale.name }}</NuxtLink> |
+    </span>
     <h3>{{ t('hello', { name: 'Nuxt' }) }}</h3>
   </div>
 </template>
 
 <script lang="ts">
-import { useI18n } from '~i18n-bridge' // TODO: should change to `vue-i18n-bridge` and auto importing!
+import { useI18n } from 'vue-i18n-bridge'
 
 export default defineComponent({
   setup() {
