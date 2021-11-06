@@ -31,6 +31,9 @@
     "@nuxtjs/i18n": "git+https://github.com/kazupon/i18n-module.git#next",
     "debug": "^4.3.2",
     "pathe": "^0.2.0",
+    "ufo": "^0.7.9",
+    "unplugin": "^0.2.19",
+    "vue-i18n": "beta",
     "vue-i18n-bridge": "beta"
   },
   "devDependencies": {

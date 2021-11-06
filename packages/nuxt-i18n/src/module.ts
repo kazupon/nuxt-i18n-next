@@ -42,7 +42,7 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
       }
     } else if (isNuxt3(nuxt)) {
       // nuxt3
-      setupNuxt3(options)
+      await setupNuxt3(options)
       setupComposables(options)
     } else {
       // TODO:
