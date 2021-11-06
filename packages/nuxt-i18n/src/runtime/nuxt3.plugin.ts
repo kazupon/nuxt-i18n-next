@@ -13,6 +13,7 @@ const isEmpty = (obj: any) => Object.keys(obj).length === 0
 
 export default defineNuxtPlugin(async nuxt => {
   const { vueApp: app } = nuxt
+  console.log('nuxt-i18n: nuxt.js v3.x', nuxt)
 
   const loadedOptions = await optionsLoader()
   if (!isEmpty(messages)) {
@@ -27,4 +28,6 @@ export default defineNuxtPlugin(async nuxt => {
   })
 
   app.use(i18n)
+
+  nuxt.i18n = i18n
 })
