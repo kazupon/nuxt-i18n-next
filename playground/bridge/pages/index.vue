@@ -10,17 +10,20 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-bridge'
+import { useNuxtI18n } from '#i18n'
 
 export default defineComponent({
   setup() {
     const { t } = useI18n()
+    const { switchLocalePath, localePath } = useNuxtI18n()
     const { nuxt2Context } = useNuxtApp()
 
+    console.log('localPath', localePath('/about', 'fr'))
     const availableLocales = computed(() => {
       return nuxt2Context.i18n.locales.filter(i => i.code !== nuxt2Context.i18n.global.locale.value)
     })
 
-    return { availableLocales, t }
+    return { switchLocalePath, availableLocales, t }
   }
 })
 
