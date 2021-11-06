@@ -42,7 +42,8 @@
     "nuxt3": "latest",
     "unbuild": "latest",
     "vue": "^2",
-    "vue-demi": "*"
+    "vue-demi": "*",
+    "vue-router": "^3"
   },
   "publishConfig": {
     "access": "public"

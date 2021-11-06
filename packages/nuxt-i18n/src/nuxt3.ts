@@ -28,7 +28,7 @@ export async function setupNuxt3(options: NuxtI18nNextOptions) {
   const nuxt = useNuxt()
   const _require = createRequire(import.meta.url)
 
-  // Resolve vue-i18n-bridge
+  // Resolve vue-i18n-next
   for (const [name, entry] of Object.entries(
     nuxt.options.dev ? MODULE_DEV_NUXT3_ENTRIES : MODULE_PROD_NUXT3_ENTRIES
   )) {
