@@ -1,12 +1,18 @@
 import { useI18n } from 'vue-i18n'
 // import { useNuxtApp } from '#app'
-import { isString } from '@intlify/shared'
+import { isString, isSymbol, assign } from '@intlify/shared'
 import { DEFAULT_OPTIONS, STRATEGIES } from '../../constants'
+import { Strategies } from '@nuxtjs/i18n'
 
 import type { Locale } from 'vue-i18n'
-import type { Route, RawLocation } from 'vue-router'
+import type {
+  Router,
+  RouteLocation,
+  RouteLocationRaw,
+  RouteRecordName,
+  RouteLocationNormalizedLoaded
+} from 'vue-router'
 import type { I18nRoutingOptions } from './types'
-import { Strategies } from '@nuxtjs/i18n'
 
 export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
   console.log('nuxt3 routing composition api')
@@ -15,14 +21,8 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
   // const app = useNuxtApp()
   const $i18n = useI18n({ useScope: 'global' })
   // const $i18n = app.i18n.global
-  const $router = useRouter()
-  const $route = useRoute()
-  console.log('$i18n', $i18n)
-  console.log('$router', $router)
-  console.log('$route', $route)
-
-  // TODO: should check to see at here, wheather it has been initialized with `useXXX`
-  //
+  const $router = useRouter() as Router
+  const $route = useRoute() as RouteLocationNormalizedLoaded
 
   // if option values is undefined, initialize with default value at here
   const routesNameSeparator =
@@ -33,17 +33,18 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
    * define routing utilities with Composition API
    */
 
-  function getRouteBaseName(givenRoute?: Route) {
-    const route = givenRoute != null ? givenRoute : ($route as unknown as Route)
+  function getRouteBaseName(givenRoute?: RouteLocation) {
+    const route = givenRoute != null ? givenRoute : $route
     if (!route || !route.name) {
       return
     }
-    return route.name.split(routesNameSeparator)[0]
+    const name = getRouteName(route.name)
+    return name.split(routesNameSeparator)[0]
   }
 
-  function getLocaleRouteName(routeName: string, locale: Locale) {
+  function getLocaleRouteName(routeName: RouteRecordName, locale: Locale) {
     let name =
-      routeName +
+      getRouteName(routeName) +
       (options.strategy === STRATEGIES.NO_PREFIX
         ? ''
         : routesNameSeparator + locale)
@@ -58,7 +59,10 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
     return name
   }
 
-  function resolveRoute(route?: RawLocation, locale?: Locale) {
+  function resolveRoute(
+    route?: RouteLocationRaw | RouteLocationNormalizedLoaded,
+    locale?: Locale
+  ) {
     let _route = route
 
     // Abort if no route or no locale
@@ -79,20 +83,18 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
       }
     }
 
-    let localizedRoute = Object.assign({}, _route)
+    let localizedRoute = assign({}, _route) as RouteLocationNormalizedLoaded
 
     if (localizedRoute.path && !localizedRoute.name) {
       const resolvedRoute = $router.resolve(localizedRoute)
-      const resolvedRouteName = getRouteBaseName(
-        resolvedRoute as unknown as Route
-      )
+      const resolvedRouteName = getRouteBaseName(resolvedRoute)
       if (resolvedRouteName) {
         localizedRoute = {
           name: getLocaleRouteName(resolvedRouteName, _locale),
-          params: resolvedRoute.params as any, // TODO:
+          params: resolvedRoute.params,
           query: resolvedRoute.query,
           hash: resolvedRoute.hash
-        }
+        } as RouteLocationNormalizedLoaded
       } else {
         // TODO:
         /*
@@ -120,7 +122,7 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
         */
       }
     } else {
-      if (!localizedRoute.name && !localizedRoute.path) {
+      if (localizedRoute.name == null && !localizedRoute.path) {
         localizedRoute.name = getRouteBaseName()
       }
 
@@ -142,20 +144,20 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
     return $router.resolve(_route)
   }
 
-  function localePath(route: RawLocation, locale: Locale) {
+  function localePath(route: RouteLocationRaw, locale: Locale) {
     const localizedRoute = resolveRoute(route, locale)
     return localizedRoute
       ? localizedRoute.redirectedFrom || localizedRoute.path
       : ''
   }
 
-  function localeRoute(route: RawLocation, locale: Locale) {
+  function localeRoute(route: RouteLocationRaw, locale: Locale) {
     const resolved = resolveRoute(route, locale)
     // TODO:
     return resolved
   }
 
-  function localeLocation(route: RawLocation, locale: Locale) {
+  function localeLocation(route: RouteLocationRaw, locale: Locale) {
     const resolved = resolveRoute(route, locale)
     // TODO:
     return resolved
@@ -176,14 +178,14 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
     //     store.getters[`${options.vuex.moduleName}/localeRouteParams`](locale)
     // }
 
-    const baseRoute = Object.assign({}, routeCopy, {
+    const baseRoute = assign({}, routeCopy, {
       name,
       params: {
         ...params,
         ...langSwitchParams,
         0: params.pathMatch
       }
-    }) as RawLocation
+    }) as RouteLocationRaw
     const path = localePath(baseRoute, locale)
 
     // TODO: for domainDifference
@@ -198,4 +200,13 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
     localeLocation,
     switchLocalePath
   }
+}
+
+function getRouteName(routeName?: RouteRecordName | null) {
+  // prettier-ignore
+  return isString(routeName)
+      ? routeName
+      : isSymbol(routeName)
+        ? routeName.toString()
+        : ''
 }

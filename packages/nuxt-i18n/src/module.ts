@@ -38,12 +38,12 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
       debug('installed nuxt bridge', installed)
       if (installed) {
         setupNuxtBridge(options)
-        setupComposables(options)
+        setupComposables(options, 'bridge')
       }
     } else if (isNuxt3(nuxt)) {
       // nuxt3
       await setupNuxt3(options)
-      setupComposables(options)
+      setupComposables(options, 'nuxt3')
     } else {
       // TODO:
     }

@@ -37,7 +37,10 @@
     "paths": {
       "#app": [
         "./node_modules/nuxt3/dist/app/index"
-      ]
+      ],
+      "vue-router": [
+        "./node_modules/vue-router/dist/vue-router"
+      ],
     }, /* Specify a set of entries that re-map imports to additional lookup locations. */
 
     /* JavaScript Support */
