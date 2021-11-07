@@ -1,12 +1,12 @@
 import { useI18n } from 'vue-i18n'
 // import { useNuxtApp } from '#app'
+import { useRoute, useRouter } from 'vue-router'
 import { isString, isSymbol, assign } from '@intlify/shared'
 import { DEFAULT_OPTIONS, STRATEGIES } from '../../constants'
 import { Strategies } from '@nuxtjs/i18n'
 
 import type { Locale } from 'vue-i18n'
 import type {
-  Router,
   RouteLocation,
   RouteLocationRaw,
   RouteRecordName,
@@ -21,8 +21,8 @@ export function useI18nRoutingNuxt3(options: I18nRoutingOptions = {}) {
   // const app = useNuxtApp()
   const $i18n = useI18n({ useScope: 'global' })
   // const $i18n = app.i18n.global
-  const $router = useRouter() as Router
-  const $route = useRoute() as RouteLocationNormalizedLoaded
+  const $router = useRouter()
+  const $route = useRoute()
 
   // if option values is undefined, initialize with default value at here
   const routesNameSeparator =
