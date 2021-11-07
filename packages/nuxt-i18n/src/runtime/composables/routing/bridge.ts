@@ -1,6 +1,8 @@
 import { useNuxtApp } from '#app'
 
-export function useI18nRoutingBridge() {
+import type { I18nRoutingOptions } from './types'
+
+export function useI18nRoutingBridge(options: I18nRoutingOptions = {}) {
   const {
     nuxt2Context: { app }
   } = useNuxtApp()
