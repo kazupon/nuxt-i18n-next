@@ -8,10 +8,8 @@
     "build": "nuxt build",
     "start": "node .output/server/index.mjs"
   },
-  "localDependencies": {
-    "@kazupon/nuxt-i18n-next": "../../packages/nuxt-i18n"
-  },
   "devDependencies": {
-    "nuxt3": "latest"
+    "nuxt3": "latest",
+    "@kazupon/nuxt-i18n-next": "0.0.7"
   }
 }
