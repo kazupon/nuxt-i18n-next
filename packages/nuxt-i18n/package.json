@@ -32,17 +32,22 @@
     "debug": "^4.3.2",
     "pathe": "^0.2.0",
     "ufo": "^0.7.9",
-    "unplugin": "^0.2.19",
-    "vue-i18n": "beta",
-    "vue-i18n-bridge": "beta"
+    "unplugin": "^0.2.19"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
+    "@nuxtjs/i18n": "^7.2.0",
     "@types/debug": "^4.1.7",
     "nuxt3": "latest",
     "unbuild": "latest",
-    "vue": "^2",
-    "vue-demi": "*"
+    "vue": "npm:vue@next",
+    "vue-demi": "*",
+    "vue-i18n": "npm:vue-i18n@next",
+    "vue-i18n-bridge": "beta",
+    "vue-i18n8": "npm:vue-i18n@latest",
+    "vue-router": "npm:vue-router@next",
+    "vue-router3": "npm:vue-router@latest",
+    "vue2": "npm:vue@latest"
   },
   "publishConfig": {
     "access": "public"

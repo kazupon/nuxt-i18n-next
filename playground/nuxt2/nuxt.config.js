@@ -30,7 +30,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
-    '@kazupon/nuxt-i18n-next'
+    '@nuxtjs/i18n'
   ],
 
   i18n: {

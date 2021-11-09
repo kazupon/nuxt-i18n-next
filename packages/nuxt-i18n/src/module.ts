@@ -1,11 +1,9 @@
-import { createRequire } from 'module'
 import createDebug from 'debug'
 import {
   Nuxt,
   defineNuxtModule,
   isNuxt2,
   isNuxt3,
-  installModule,
   resolveModule,
   checkNuxtCompatibilityIssues
 } from '@nuxt/kit'
@@ -24,22 +22,12 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
   configKey: 'i18n',
   defaults: {},
   async setup(options, nuxt) {
-    const _require = createRequire(import.meta.url)
-
     debug('setup isNuxt2?', isNuxt2(nuxt))
     if (isNuxt2(nuxt)) {
       // nuxt2 or nuxt bridge
 
-      // install `@nuxtjs/i18n` module
-      await installModule(nuxt, _require.resolve('@nuxtjs/i18n'))
-
-      // check whether `@nuxt/bridge` is installed
-      const installed = await isInstalledNuxtBridge(nuxt)
-      debug('installed nuxt bridge', installed)
-      if (installed) {
-        setupNuxtBridge(options)
-        setupComposables(options, 'bridge')
-      }
+      await setupNuxtBridge(options)
+      setupComposables(options, 'bridge')
     } else if (isNuxt3(nuxt)) {
       // nuxt3
       await setupNuxt3(options)

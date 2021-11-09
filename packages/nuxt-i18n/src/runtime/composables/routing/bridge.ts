@@ -14,7 +14,11 @@ export function useI18nRoutingBridge(options: I18nRoutingOptions = {}) {
 
   console.log('nuxt bridge routing composition api', app)
   return {
-    switchLocalePath: app.switchLocalePath,
-    localePath: app.localePath
+    switchLocalePath: () => {
+      console.log('call switchLocalePath')
+    },
+    localePath: () => {
+      console.log('call localPath')
+    }
   }
 }

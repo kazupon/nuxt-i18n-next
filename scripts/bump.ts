@@ -13,9 +13,9 @@ type DepsReviver = (deps: Deps) => Deps | undefined
 async function loadPackage(dir: string) {
   const pkgPath = resolve(dir, 'package.json')
   const data = JSON.parse(await fs.readFile(pkgPath, 'utf-8').catch(() => '{}'))
-  // const save = () => fs.writeFile(pkgPath, JSON.stringify(data, null, 2) + '\n')
-  const save = () =>
-    console.log(`package: ${dir}`, JSON.stringify(data, null, 2))
+  const save = () => fs.writeFile(pkgPath, JSON.stringify(data, null, 2) + '\n')
+  // const save = () =>
+  // console.log(`package: ${dir}`, JSON.stringify(data, null, 2))
 
   const updateDeps = (reviver: DepsReviver) => {
     for (const type of [

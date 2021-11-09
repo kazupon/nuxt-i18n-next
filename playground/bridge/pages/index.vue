@@ -2,7 +2,7 @@
   <div>
     <h1>{{ $t('welcome') }}</h1>
     <span v-for="locale in availableLocales" :key="locale.code">
-      <NuxtLink :to="switchLocalePath(locale.code)">{{ locale.name }}</NuxtLink> |
+      <NuxtLink :to="switchLocalePath(locale.code) || ''">{{ locale.name }}</NuxtLink> |
     </span>
     <h3>{{ t('hello', { name: 'Nuxt' }) }}</h3>
   </div>

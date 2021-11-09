@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
-    "@kazupon/nuxt-i18n-next": "^0.0.7",
+    "@nuxtjs/i18n": "^7.2.0",
     "@nuxt/typescript-build": "^2.1.0"
   }
 }
