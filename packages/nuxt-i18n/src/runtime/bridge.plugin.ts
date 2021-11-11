@@ -14,7 +14,7 @@ import messages from '#build/nuxti18n.locales.mjs'
 const isEmpty = (obj: any) => Object.keys(obj).length === 0
 
 export default defineNuxtPlugin(async nuxt => {
-  const { nuxt2Context } = nuxt
+  const { vueApp } = nuxt
   // console.log('nuxt2Context', nuxt2Context)
 
   const loadedOptions = await optionsLoader()
@@ -37,7 +37,15 @@ export default defineNuxtPlugin(async nuxt => {
 
   // @ts-ignore
   Vue.use(i18n)
-  nuxt2Context.vueApp.use(i18n)
+  nuxt.hook('app:created', () => {
+    console.log('app:created')
+  })
+  nuxt.hook('app:beforeMount', () => {
+    console.log('app:beofreMount')
+  })
+  nuxt.hook('app:mounted', () => {
+    console.log('app:mounted')
+  })
 
   nuxt.i18n = i18n
 })

@@ -5,9 +5,6 @@ set -xe
 # Restore all git changes
 git restore -s@ -SW  -- packages
 
-# Bump versions
-yarn jiti ./scripts/bump
-
 # Resolve yarn
 YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
 

@@ -1,7 +1,7 @@
 {
   "name": "nuxt-i18n-next",
   "private": true,
-  "version": "0.0.7",
+  "version": "0.0.9",
   "homepage": "https://github.com/kazupon/nuxt-i18n-next#readme",
   "bugs": {
     "url": "https://github.com/kazupon/nuxt-i18n-next/issues"
@@ -42,7 +42,8 @@
     "lint": "run-p lint:codes",
     "lint:codes": "eslint --ext .js,.ts,.vue,.json .",
     "lint:fix": "run-p \"lint:codes --fix\"",
-    "release": "./scripts/release_bump.sh"
+    "bump": "./scripts/bump.sh",
+    "release": "./scripts/release.sh"
   },
   "devDependencies": {
     "@types/semver": "^7.3.9",
