@@ -15,7 +15,7 @@ async function loadPackage(dir: string) {
   const data = JSON.parse(await fs.readFile(pkgPath, 'utf-8').catch(() => '{}'))
   const save = () => fs.writeFile(pkgPath, JSON.stringify(data, null, 2) + '\n')
   // const save = () =>
-  // console.log(`package: ${dir}`, JSON.stringify(data, null, 2))
+  //   console.log(`package: ${dir}`, JSON.stringify(data, null, 2))
 
   const updateDeps = (reviver: DepsReviver) => {
     for (const type of [
@@ -96,7 +96,10 @@ async function loadWorkspace(dir: string, workspaces: string[] = []) {
     }
   }
 
-  const save = () => Promise.all(packages.map(pkg => pkg.save()))
+  const save = async () => {
+    await workspacePkg.save()
+    return Promise.all(packages.map(pkg => pkg.save()))
+  }
 
   return {
     dir,
@@ -117,6 +120,7 @@ async function main() {
     throw new Error('Invalid version: ' + workspace.workspacePkg.data.version)
   }
 
+  workspace.workspacePkg.data.version = release
   for (const pkg of workspace.packages.filter(p => !p.data.private)) {
     workspace.setVersion(pkg.data.name, release)
     if (pkg.data.name !== '@kazupon/nuxt-i18n-next') {
