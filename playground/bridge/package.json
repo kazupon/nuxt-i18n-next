@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@nuxt/bridge": "npm:@nuxt/bridge-edge@latest",
-    "@kazupon/nuxt-i18n-next": "0.0.9",
+    "@kazupon/nuxt-i18n-next": "0.0.10",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0"
   }
