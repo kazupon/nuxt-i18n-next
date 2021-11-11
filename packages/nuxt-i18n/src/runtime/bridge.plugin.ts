@@ -24,6 +24,7 @@ export default defineNuxtPlugin(async nuxt => {
   console.log('loadedOptions', loadedOptions)
 
   Vue.use(VueI18n, { bridge: true })
+  console.log('plugin installed i18n')
 
   const i18n = createI18n(
     {
@@ -37,6 +38,8 @@ export default defineNuxtPlugin(async nuxt => {
 
   // @ts-ignore
   Vue.use(i18n)
+  console.log('plugin installed bridge i18n')
+
   nuxt.hook('app:created', () => {
     console.log('app:created')
   })
@@ -48,4 +51,5 @@ export default defineNuxtPlugin(async nuxt => {
   })
 
   nuxt.i18n = i18n
+  console.log('set i18n to nuxt')
 })
