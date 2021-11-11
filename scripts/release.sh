@@ -12,6 +12,6 @@ YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
 for p in packages/* ; do
   pushd $p
   echo "Publishing $p"
-  yarn npm publish --access public --tolerate-republish
+  npm publish
   popd
 done
