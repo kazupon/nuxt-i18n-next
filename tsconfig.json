@@ -39,6 +39,8 @@
       "#build/nuxti18n.loader": [
         "./packages/nuxt-i18n/src/runtime/nuxti18n.loader.d.ts"
       ],
+      "vue-i18n-legacy": ["./node_modules/vue-i18n-legacy/types/index.d.ts"],
+      "vue-i18n-bridge": ["./node_modules/vue-i18n-bridge/dist/vue-i18n-bridge.d.ts"],
       "vue-i18n": ["./node_modules/vue-i18n/dist/vue-i18n.d.ts"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
 
@@ -103,5 +105,5 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "exclude": ["**/.nuxt/**", "**/*/dist/*"]
+  "exclude": ["**/.nuxt/**", "**/*/dist/*"],
 }
