@@ -6,7 +6,7 @@ import { defineNuxtPlugin } from '#app'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // TODO:
 import {
-  messages,
+  messages as loadMessages,
   localeCodes,
   nuxtI18nOptions
   // @ts-ignore: resolved with tsconfig
@@ -18,6 +18,7 @@ export default defineNuxtPlugin(async nuxt => {
 
   // TODO: lazy load
   // load messages
+  const messages = await loadMessages()
   if (!isEmptyObject(messages)) {
     nuxtI18nOptions.vueI18n.messages = messages
   }

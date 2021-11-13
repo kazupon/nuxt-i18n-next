@@ -52,7 +52,7 @@ export const loaderUnplugin = createUnplugin((options: LoaderOptions = {}) => ({
           importMapper.set(code, templateUtils.importName(`locale_${code}`))
         })
         return `${localeInfo.map(l => `import ${importMapper.get(l.code)} from ${templateUtils.serialize(l.path)}`).join(`\n`)}
-export const messages = Object({${[...importMapper].map(i => `${templateUtils.serialize(i[0])}:${i[1]}`).join(`,`)}})`
+export const messages = () => Promise.resolve(Object({${[...importMapper].map(i => `${templateUtils.serialize(i[0])}:${i[1]}`).join(`,`)}}))`
       } else {
         return `export const ${rootKey} = ${toCode(rootValue)}`
       }
