@@ -10,21 +10,24 @@ import {
 import { resolve } from 'pathe'
 import { isString, isObject } from '@intlify/shared'
 import { distDir } from './dirs'
-import { setupAliasTranspileOptions, resolveLocales } from './utils'
-import { optionLoader } from './loader'
+import {
+  setupAliasTranspileOptions,
+  getNormalizedLocales,
+  resolveLocales
+} from './utils'
+import { loaderUnplugin } from './loader'
 import {
   MODULE_DEV_NUXT3_ENTRIES,
   MODULE_PROD_NUXT3_ENTRIES,
-  NUXTI18N_LOCALE_VIRTUAL_FILENAME,
-  NUXTI18N_OPTIONS_VIRTUAL_FILENAME
+  NUXTI18N_LOADER_VIRTUAL_FILENAME
 } from './constants'
 
-import type { NuxtI18nNextOptions } from './types'
+import type { NuxtI18nOptions } from './types'
 import type { LoaderOptions } from './loader'
 
-const debug = createDebug('@nuxtjs/i18n:setupNuxt3')
+const debug = createDebug('@nuxtjs/i18n:nuxt3')
 
-export async function setupNuxt3(options: NuxtI18nNextOptions) {
+export async function setupNuxt3(options: NuxtI18nOptions) {
   const nuxt = useNuxt()
   const _require = createRequire(import.meta.url)
 
@@ -35,46 +38,37 @@ export async function setupNuxt3(options: NuxtI18nNextOptions) {
     setupAliasTranspileOptions(nuxt, name, _require.resolve(entry))
   }
 
-  // vue-i18n options loading template
-  addTemplate({
-    filename: NUXTI18N_OPTIONS_VIRTUAL_FILENAME,
-    getContents: () => {
-      return `${nuxt.options.dev ? "// 'vueI18n' option loading ..." : ''}`
-    }
-  })
-
-  // prettier-ignore
-  const loaderOptions: LoaderOptions = {
-    vueI18n: isObject(options.vueI18n)
-      ? options.vueI18n
-      : isString(options.vueI18n)
-        ? resolve(nuxt.options.rootDir, options.vueI18n)
-        : undefined
-  }
-  addWebpackPlugin(optionLoader.webpack(loaderOptions))
-  addVitePlugin(optionLoader.vite(loaderOptions))
-
-  const langDir = options.langDir || 'locales'
-  const langPath = resolve(nuxt.options.srcDir, langDir)
+  options.langDir = options.langDir || 'locales'
+  const langPath = resolve(nuxt.options.srcDir, options.langDir)
   debug('langDir path', langPath)
 
-  const localeResources = options.locales
-    ? await resolveLocales(langPath, options.locales)
-    : []
+  const normalizedLocales = (options.locales = getNormalizedLocales(
+    options.locales
+  ))
+  const localeCodes = normalizedLocales.map(locale => locale.code)
+  const localeInfo = await resolveLocales(langPath, normalizedLocales)
+  debug('localeInfo', localeInfo)
 
-  // locale messages load template
+  // prettier-ignore
+  options.vueI18n = isObject(options.vueI18n)
+    ? options.vueI18n
+    : isString(options.vueI18n)
+      ? resolve(nuxt.options.rootDir, options.vueI18n)
+      : undefined
+
+  const loaderOptions: LoaderOptions = {
+    localeCodes,
+    localeInfo,
+    nuxtI18nOptions: options
+  }
+  addWebpackPlugin(loaderUnplugin.webpack(loaderOptions))
+  addVitePlugin(loaderUnplugin.vite(loaderOptions))
+
+  // vue-i18n options loading template
   addTemplate({
-    filename: NUXTI18N_LOCALE_VIRTUAL_FILENAME,
-    getContents: ({ utils }) => {
-      const importMapper = new Map<string, string>()
-      localeResources.forEach(({ code }) => {
-        importMapper.set(code, utils.importName(`locale_${code}`))
-      })
-      // prettier-ignore
-      return `
-${localeResources.map(l => `import ${importMapper.get(l.code)} from '${l.path}'`).join('\n')}
-export default { ${[...importMapper].map(i => `${JSON.stringify(i[0])}:${i[1]}`).join(',')} }
-`
+    filename: NUXTI18N_LOADER_VIRTUAL_FILENAME,
+    getContents: () => {
+      return `${nuxt.options.dev ? "// 'vueI18n' option loading ..." : ''}`
     }
   })
 

@@ -1,3 +1,4 @@
+import { createRequire } from 'module'
 import createDebug from 'debug'
 import {
   Nuxt,
@@ -5,33 +6,44 @@ import {
   isNuxt2,
   isNuxt3,
   resolveModule,
+  installModule,
   checkNuxtCompatibilityIssues
 } from '@nuxt/kit'
 import { setupNuxtBridge } from './bridge'
 import { setupNuxt3 } from './nuxt3'
 import { setupComposables } from './composable'
 
-import type { NuxtI18nNextOptions } from './types'
+import type { NuxtI18nOptions } from './types'
 
 export * from './types'
 
 const debug = createDebug('nuxt/i18n:module')
 
-const NuxtI18nModule = defineNuxtModule<NuxtI18nNextOptions>({
+const NuxtI18nModule = defineNuxtModule<NuxtI18nOptions>({
   name: '@kazupon/nuxt-i18n-next',
   configKey: 'i18n',
   defaults: {},
   async setup(options, nuxt) {
+    const _require = createRequire(import.meta.url)
+
     debug('setup isNuxt2?', isNuxt2(nuxt))
     if (isNuxt2(nuxt)) {
       // nuxt2 or nuxt bridge
 
+      // install `@nuxtjs/i18n` module
+      // await installModule(nuxt, _require.resolve('@nuxtjs/i18n'))
+
+      // check whether `@nuxt/bridge` is installed
+      // const installed = await isInstalledNuxtBridge(nuxt)
+      // debug('installed nuxt bridge', installed)
+
+      await setupNuxtBridge(options, 'bridge')
+      // await setupNuxtBridge(options, 'bridge-on-legacy')
       setupComposables(options, 'bridge')
-      await setupNuxtBridge(options)
     } else if (isNuxt3(nuxt)) {
       // nuxt3
-      setupComposables(options, 'nuxt3')
       await setupNuxt3(options)
+      setupComposables(options, 'nuxt3')
     } else {
       // TODO:
     }

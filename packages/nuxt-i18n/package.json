@@ -44,7 +44,7 @@
     "vue-demi": "*",
     "vue-i18n": "npm:vue-i18n@next",
     "vue-i18n-bridge": "beta",
-    "vue-i18n8": "npm:vue-i18n@latest",
+    "vue-i18n-legacy": "npm:vue-i18n@latest",
     "vue-router": "npm:vue-router@next",
     "vue-router3": "npm:vue-router@latest",
     "vue2": "npm:vue@latest"

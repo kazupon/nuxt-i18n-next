@@ -33,6 +33,10 @@ export default defineNuxtConfig({
     '@kazupon/nuxt-i18n-next'
   ],
 
+  bridge: {
+    vite: false
+  },
+
   i18n: {
     langDir: 'locales',
     locales: [

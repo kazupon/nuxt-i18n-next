@@ -1,5 +1,4 @@
 import Vue from 'vue2'
-import VueI18n from 'vue-i18n8'
 import { createI18n } from 'vue-i18n-bridge'
 import { defineNuxtPlugin } from '#app'
 

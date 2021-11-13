@@ -16,7 +16,7 @@ export const MODULE_DEV_BRIDGE_ENTRIES = Object.assign(
   {},
   MODULE_DEV_BASIC_ENTRIES,
   {
-    'vue-i18n8': 'vue-i18n8/dist/vue-i18n.esm.js',
+    'vue-i18n': 'vue-i18n-legacy/dist/vue-i18n.esm.js',
     'vue-i18n-bridge': 'vue-i18n-bridge/dist/vue-i18n-bridge.esm-bundler.js'
   }
 )
@@ -25,7 +25,7 @@ export const MODULE_PROD_BRIDGE_ENTRIES = Object.assign(
   {},
   MODULE_PROD_BASIC_ENTRIES,
   {
-    'vue-i18n8': 'vue-i18n8/dist/vue-i18n.esm.js',
+    'vue-i18n': 'vue-i18n-legacy/dist/vue-i18n.esm.js',
     'vue-i18n-bridge':
       'vue-i18n-bridge/dist/vue-i18n-bridge.runtime.esm-bundler.js'
   }
@@ -47,5 +47,4 @@ export const MODULE_PROD_NUXT3_ENTRIES = Object.assign(
   }
 )
 
-export const NUXTI18N_OPTIONS_VIRTUAL_FILENAME = 'nuxti18n.options.mjs'
-export const NUXTI18N_LOCALE_VIRTUAL_FILENAME = 'nuxti18n.locales.mjs'
+export const NUXTI18N_LOADER_VIRTUAL_FILENAME = 'nuxti18n.loader'

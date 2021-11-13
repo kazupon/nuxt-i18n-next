@@ -1,19 +1,35 @@
-import { isBoolean, isObject } from '@intlify/shared'
+import {
+  isBoolean,
+  isObject,
+  isString,
+  isRegExp,
+  isFunction
+} from '@intlify/shared'
 import { parse } from 'pathe'
 import { promises as fs } from 'fs'
 import { resolveFiles } from '@nuxt/kit'
 
 import type { NuxtOptions, Nuxt } from '@nuxt/kit'
-import type { NuxtI18nNextOptions } from './types'
-import type { LocaleObject } from '@nuxtjs/i18n'
+import type { NuxtI18nOptions, LocaleObject, LocaleInfo } from './types'
 
-export type LocaleInfo = {
-  path: string
-} & LocaleObject
+export function getNormalizedLocales(
+  locales: NuxtI18nOptions['locales']
+): LocaleObject[] {
+  locales = locales || []
+  const normalized: LocaleObject[] = []
+  for (const locale of locales) {
+    if (isString(locale)) {
+      normalized.push({ code: locale })
+    } else {
+      normalized.push(locale)
+    }
+  }
+  return normalized
+}
 
 export async function resolveLocales(
   path: string,
-  locales: NonNullable<NuxtI18nNextOptions['locales']>
+  locales: LocaleObject[]
 ): Promise<LocaleInfo[]> {
   const files = await resolveFiles(path, '**/*{json,json5,yaml,yml}')
   return files.map(file => {
@@ -30,7 +46,7 @@ export async function resolveLocales(
 }
 
 function findLocales(
-  locales: NonNullable<NuxtI18nNextOptions['locales']>,
+  locales: NonNullable<NuxtI18nOptions['locales']>,
   filename: string
 ) {
   // @ts-ignore
@@ -65,4 +81,40 @@ export async function exists(path: string): Promise<boolean> {
   } catch (e) {
     return false
   }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function stringifyObj(obj: Record<string, any>): string {
+  return `Object({${Object.entries(obj)
+    .map(([key, value]) => `${JSON.stringify(key)}:${toCode(value)}`)
+    .join(`,`)}})`
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function toCode(code: any): string {
+  if (code === null) {
+    return `null`
+  }
+
+  if (code === undefined) {
+    return `undefined`
+  }
+
+  if (isString(code)) {
+    return JSON.stringify(code)
+  }
+
+  if (isRegExp(code) && code.toString) {
+    return code.toString()
+  }
+
+  if (isFunction(code) && code.toString) {
+    return `(${code.toString()})`
+  }
+
+  if (isObject(code)) {
+    return stringifyObj(code)
+  }
+
+  return code + ``
 }

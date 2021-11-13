@@ -1,39 +1,64 @@
 import createDebug from 'debug'
 import { createUnplugin } from 'unplugin'
 import { parseURL } from 'ufo'
-import { promises as fs } from 'fs'
 import { isObject, isString } from '@intlify/shared'
-import { NUXTI18N_OPTIONS_VIRTUAL_FILENAME } from './constants'
+import { templateUtils } from '@nuxt/kit'
+import { NUXTI18N_LOADER_VIRTUAL_FILENAME } from './constants' // TODO:
+import { toCode } from './utils'
 
-import type { NuxtI18nNextOptions } from './types'
+import type { NuxtI18nOptions, LocaleInfo } from './types'
 
-export type LoaderOptions = Pick<NuxtI18nNextOptions, 'vueI18n'>
+export type LoaderOptions = {
+  localeCodes?: string[]
+  localeInfo?: LocaleInfo[]
+  nuxtI18nOptions?: NuxtI18nOptions
+}
 
 const debug = createDebug('@nuxtjs/i18n:loader')
 
-export const optionLoader = createUnplugin((options: LoaderOptions = {}) => ({
-  name: 'nuxtjs-i18n-options-loader',
+export const loaderUnplugin = createUnplugin((options: LoaderOptions = {}) => ({
+  name: 'nuxt-i18n-loader',
   enforce: 'post',
 
   transformInclude(id) {
     const { pathname } = parseURL(id)
-    return pathname.endsWith(NUXTI18N_OPTIONS_VIRTUAL_FILENAME)
+    return pathname.endsWith(NUXTI18N_LOADER_VIRTUAL_FILENAME)
   },
 
   async transform(code) {
     debug('original code -> ', code)
-    options.vueI18n
 
-    let loadingCode = `export default () => Promise.resolve({})`
-    if (isObject(options.vueI18n)) {
-      loadingCode = `export default () => Promise.resolve(${JSON.stringify(
-        options.vueI18n || {}
-      )})`
-    } else if (isString(options.vueI18n)) {
-      loadingCode = await fs.readFile(options.vueI18n, 'utf8')
-    }
+    // TODO: support lazy loading
 
-    debug('injecting code -> ', loadingCode)
-    return `${code}\n${loadingCode}`
+    // prettier-ignore
+    const genCode = `${Object.entries(options).map(([rootKey, rootValue]) => {
+      if (rootKey === 'nuxtI18nOptions') {
+        return `export const ${rootKey} = Object({${Object.entries(rootValue).map(([key, value]) => {
+          if (key === 'vueI18n') {
+            return `${key}: ${isObject(value)
+              ? toCode(value)
+              : isString(value)
+                ? `(context) => import(${toCode(value)}).then(r => (r.default || r)(context))`
+                : `${toCode({})}`
+            }`
+          } else {
+            return `${key}: ${toCode(value)}`
+          }
+        }).join(`,`)}})`
+      } else if (rootKey === 'localeInfo') {
+        const localeInfo = options.localeInfo || []
+        const importMapper = new Map<string, string>()
+        localeInfo.forEach(({ code }) => {
+          importMapper.set(code, templateUtils.importName(`locale_${code}`))
+        })
+        return `${localeInfo.map(l => `import ${importMapper.get(l.code)} from ${templateUtils.serialize(l.path)}`).join(`\n`)}
+export const messages = Object({${[...importMapper].map(i => `${templateUtils.serialize(i[0])}:${i[1]}`).join(`,`)}})`
+      } else {
+        return `export const ${rootKey} = ${toCode(rootValue)}`
+      }
+    }).join('\n')}`
+
+    debug('generate code', genCode)
+    return `${code}\n${genCode}`
   }
 }))

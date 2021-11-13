@@ -35,10 +35,12 @@
     // "resolveJsonModule": true,                        /* Enable importing .json files */
     // "noResolve": true,                                /* Disallow `import`s, `require`s or `<reference>`s from expanding the number of files TypeScript should add to a project. */
     "paths": {
-      "#app": [
-        "./node_modules/nuxt3/dist/app/index"
-      ]
-    }, /* Specify a set of entries that re-map imports to additional lookup locations. */
+      "#app": ["./node_modules/nuxt3/dist/app/index"],
+      "#build/nuxti18n.loader": [
+        "./packages/nuxt-i18n/src/runtime/nuxti18n.loader.d.ts"
+      ],
+      "vue-i18n": ["./node_modules/vue-i18n/dist/vue-i18n.d.ts"]
+    } /* Specify a set of entries that re-map imports to additional lookup locations. */,
 
     /* JavaScript Support */
     // "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */
@@ -101,5 +103,5 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "exclude": ["**/*/dist/*"]
+  "exclude": ["**/.nuxt/**", "**/*/dist/*"]
 }

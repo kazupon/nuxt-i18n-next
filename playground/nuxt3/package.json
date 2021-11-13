@@ -8,7 +8,7 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@kazupon/nuxt-i18n-next": "0.0.11",
+    "@kazupon/nuxt-i18n-next": "file:../../packages/nuxt-i18n",
     "nuxt3": "latest"
   }
 }

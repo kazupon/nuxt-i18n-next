@@ -4,16 +4,15 @@ import type { I18nRoutingOptions } from './types'
 
 export function useI18nRoutingBridge(options: I18nRoutingOptions = {}) {
   const {
-    nuxt2Context: { app }
+    nuxt2Context: { $i18n }
   } = useNuxtApp()
-  const { i18n } = app
 
-  if (!i18n) {
-    throw new Error('@nuxtjs/i18n not initialized')
+  if (!$i18n) {
+    throw new Error('@nuxtjs/i18n not initialized in nuxt bridge')
   }
 
-  console.log('nuxt bridge routing composition api', app)
   return {
+    i18n: $i18n,
     switchLocalePath: () => {
       console.log('call switchLocalePath')
     },
