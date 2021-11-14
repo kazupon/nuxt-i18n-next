@@ -37,13 +37,13 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nOptions>({
       // const installed = await isInstalledNuxtBridge(nuxt)
       // debug('installed nuxt bridge', installed)
 
-      await setupNuxtBridge(options, 'bridge')
+      await setupNuxtBridge(options, nuxt, 'bridge')
       // await setupNuxtBridge(options, 'bridge-on-legacy')
-      setupComposables(options, 'bridge')
+      setupComposables(options, nuxt, 'bridge')
     } else if (isNuxt3(nuxt)) {
       // nuxt3
-      await setupNuxt3(options)
-      setupComposables(options, 'nuxt3')
+      await setupNuxt3(options, nuxt)
+      setupComposables(options, nuxt, 'nuxt3')
     } else {
       // TODO:
     }

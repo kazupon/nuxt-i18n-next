@@ -3,7 +3,6 @@ import createDebug from 'debug'
 import {
   addPluginTemplate,
   addTemplate,
-  useNuxt,
   addVitePlugin,
   addWebpackPlugin
 } from '@nuxt/kit'
@@ -16,19 +15,21 @@ import {
   resolveLocales
 } from './utils'
 import { loaderUnplugin } from './loader'
+import { setupRoutes } from './routes'
 import {
   MODULE_DEV_NUXT3_ENTRIES,
   MODULE_PROD_NUXT3_ENTRIES,
-  NUXTI18N_LOADER_VIRTUAL_FILENAME
+  NUXTI18N_LOADER_VIRTUAL_FILENAME,
+  STRATEGIES
 } from './constants'
 
+import type { Nuxt } from '@nuxt/kit'
 import type { NuxtI18nOptions } from './types'
 import type { LoaderOptions } from './loader'
 
 const debug = createDebug('@nuxtjs/i18n:nuxt3')
 
-export async function setupNuxt3(options: NuxtI18nOptions) {
-  const nuxt = useNuxt()
+export async function setupNuxt3(options: NuxtI18nOptions, nuxt: Nuxt) {
   const _require = createRequire(import.meta.url)
 
   // Resolve vue-i18n-next
@@ -49,6 +50,10 @@ export async function setupNuxt3(options: NuxtI18nOptions) {
   const localeInfo = await resolveLocales(langPath, normalizedLocales)
   debug('localeInfo', localeInfo)
 
+  if (options.strategy !== STRATEGIES.NO_PREFIX && localeCodes.length) {
+    setupRoutes(options, nuxt)
+  }
+
   // prettier-ignore
   options.vueI18n = isObject(options.vueI18n)
     ? options.vueI18n
@@ -64,7 +69,7 @@ export async function setupNuxt3(options: NuxtI18nOptions) {
   addWebpackPlugin(loaderUnplugin.webpack(loaderOptions))
   addVitePlugin(loaderUnplugin.vite(loaderOptions))
 
-  // vue-i18n options loading template
+  // options loading template
   addTemplate({
     filename: NUXTI18N_LOADER_VIRTUAL_FILENAME,
     getContents: () => {

@@ -1,15 +1,14 @@
-import { addPluginTemplate, useNuxt, resolveModule } from '@nuxt/kit'
 import { resolve } from 'pathe'
 import { distDir } from './dirs'
 
+import type { Nuxt } from '@nuxt/kit'
 import type { NuxtI18nOptions } from './types'
 
 export function setupComposables(
   options: NuxtI18nOptions,
+  nuxt: Nuxt,
   mode: 'bridge' | 'bridge-on-legacy' | 'nuxt3'
 ): void {
-  const nuxt = useNuxt()
-
   // vue-demi
   // nuxt.options.alias['vue-demi'] = resolveModule('vue-demi/lib/index.mjs', {
   //   paths: nuxt.options.modulesDir

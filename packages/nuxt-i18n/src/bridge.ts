@@ -5,7 +5,6 @@ import {
   resolveModule,
   addPluginTemplate,
   addTemplate,
-  useNuxt,
   addVitePlugin,
   addWebpackPlugin
 } from '@nuxt/kit'
@@ -17,12 +16,15 @@ import {
   resolveLocales
 } from './utils'
 import { loaderUnplugin } from './loader'
+import { setupRoutes } from './routes'
 import {
   MODULE_DEV_BRIDGE_ENTRIES,
   MODULE_PROD_BRIDGE_ENTRIES,
-  NUXTI18N_LOADER_VIRTUAL_FILENAME
+  NUXTI18N_LOADER_VIRTUAL_FILENAME,
+  STRATEGIES
 } from './constants'
 
+import type { Nuxt } from '@nuxt/kit'
 import type { NuxtI18nOptions } from './types'
 import type { LoaderOptions } from './loader'
 
@@ -30,9 +32,9 @@ const debug = createDebug('@nuxtjs/i18n:bridge')
 
 export async function setupNuxtBridge(
   options: NuxtI18nOptions,
+  nuxt: Nuxt,
   mode: 'bridge' | 'bridge-on-legacy'
 ) {
-  const nuxt = useNuxt()
   const _require = createRequire(import.meta.url)
 
   // Resolve Vue 2 builds
@@ -68,6 +70,10 @@ export async function setupNuxtBridge(
   const localeInfo = await resolveLocales(langPath, normalizedLocales)
   debug('localeInfo', localeInfo)
 
+  if (options.strategy !== STRATEGIES.NO_PREFIX && localeCodes.length) {
+    setupRoutes(options, nuxt)
+  }
+
   // prettier-ignore
   options.vueI18n = isObject(options.vueI18n)
     ? options.vueI18n
@@ -80,7 +86,7 @@ export async function setupNuxtBridge(
   addWebpackPlugin(loaderUnplugin.webpack(loaderOptions))
   addVitePlugin(loaderUnplugin.vite(loaderOptions))
 
-  // vue-i18n options loading template
+  // options loading template
   addTemplate({
     filename: NUXTI18N_LOADER_VIRTUAL_FILENAME,
     getContents: () => {
@@ -95,12 +101,9 @@ export async function setupNuxtBridge(
       src: resolve(distDir, 'runtime/bridge.plugin.mjs')
     })
   } else if (mode === 'bridge-on-legacy') {
-    const plugin = addPluginTemplate({
+    addPluginTemplate({
       filename: 'runtime/bridge-on-legacy.plugin.mjs',
       src: resolve(distDir, 'runtime/bridge-on-legacy.plugin.mjs')
-    })
-    nuxt.hook('modules:done', () => {
-      nuxt.options.plugins.unshift(plugin)
     })
   }
 
