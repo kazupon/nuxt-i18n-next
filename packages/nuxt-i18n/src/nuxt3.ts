@@ -15,7 +15,7 @@ import {
   resolveLocales
 } from './utils'
 import { loaderUnplugin } from './loader'
-import { setupRoutes } from './routes'
+import { setupPages } from './pages'
 import {
   MODULE_DEV_NUXT3_ENTRIES,
   MODULE_PROD_NUXT3_ENTRIES,
@@ -51,7 +51,7 @@ export async function setupNuxt3(options: NuxtI18nOptions, nuxt: Nuxt) {
   debug('localeInfo', localeInfo)
 
   if (options.strategy !== STRATEGIES.NO_PREFIX && localeCodes.length) {
-    setupRoutes(options, nuxt)
+    setupPages(options, nuxt)
   }
 
   // prettier-ignore

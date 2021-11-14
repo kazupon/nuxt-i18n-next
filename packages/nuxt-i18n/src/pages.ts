@@ -4,9 +4,9 @@ import { extendPages } from '@nuxt/kit'
 import type { Nuxt, NuxtPage } from '@nuxt/kit'
 import type { NuxtI18nOptions } from './types'
 
-const debug = createDebug('@nuxtjs/i18n:routes')
+const debug = createDebug('@nuxtjs/i18n:pages')
 
-export function setupRoutes(options: NuxtI18nOptions, nuxt: Nuxt) {
+export function setupPages(options: NuxtI18nOptions, nuxt: Nuxt) {
   let includeUprefixedFallback = nuxt.options.target === 'static'
   nuxt.hook('generate:before', () => {
     debug('called generate:before hook')
