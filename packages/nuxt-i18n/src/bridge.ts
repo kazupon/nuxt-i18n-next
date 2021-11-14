@@ -71,7 +71,7 @@ export async function setupNuxtBridge(
   debug('localeInfo', localeInfo)
 
   if (options.strategy !== STRATEGIES.NO_PREFIX && localeCodes.length) {
-    setupPages(options, nuxt)
+    setupPages(options, nuxt, true)
   }
 
   // prettier-ignore
