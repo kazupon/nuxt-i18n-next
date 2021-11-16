@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ $t('welcome') }}</h1>
-    <h3>{{ t('hello', { name: 'Nuxt' }) }}</h3>
+    <h3>{{ t('hello', { name: '@nuxt/i18n next on Nuxt Bridge' }) }}</h3>
     <form>
       <select id="locale-select" v-model="locale">
         <template  v-for="(code) in i18n.localeCodes">
@@ -9,11 +9,9 @@
         </template>
       </select>
     </form>
-    <!--
     <span v-for="locale in availableLocales" :key="locale.code">
       <NuxtLink :to="switchLocalePath(locale.code) || ''">{{ locale.name }}</NuxtLink> |
     </span>
-    -->
   </div>
 </template>
 
@@ -26,9 +24,10 @@ const { switchLocalePath, i18n, localePath } = useNuxtI18n()
 
 console.log('localPath', localePath('/', 'fr'))
 console.log('localeCodes', i18n.localeCodes)  
-// const availableLocales = computed(() => {
-//   return nuxt2Context.i18n.locales.filter(i => i.code !== nuxt2Context.i18n.global.locale.value)
-// })
+console.log('locales', i18n.locales)  
+const availableLocales = computed(() => {
+  return i18n.locales.filter(i => i.code !== i18n.global.locale.value)
+})
 /*
 export default Vue.extend({
   computed: {

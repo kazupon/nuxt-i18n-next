@@ -3,7 +3,8 @@ import {
   isObject,
   isString,
   isRegExp,
-  isFunction
+  isFunction,
+  isArray
 } from '@intlify/shared'
 import { parse } from 'pathe'
 import { promises as fs } from 'fs'
@@ -110,6 +111,10 @@ export function toCode(code: any): string {
 
   if (isFunction(code) && code.toString) {
     return `(${code.toString()})`
+  }
+
+  if (isArray(code)) {
+    return `[${code.map(c => toCode(c)).join(`,`)}]`
   }
 
   if (isObject(code)) {

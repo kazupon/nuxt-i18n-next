@@ -71,8 +71,10 @@ export async function setupNuxtBridge(
   debug('localeInfo', localeInfo)
 
   if (options.strategy !== STRATEGIES.NO_PREFIX && localeCodes.length) {
-    setupPages(options, nuxt, true)
+    setupPages(options, nuxt, { isBridge: true, localeCodes })
   }
+
+  nuxt.options.router.middleware.push('nuxti18n')
 
   // prettier-ignore
   options.vueI18n = isObject(options.vueI18n)
@@ -106,6 +108,11 @@ export async function setupNuxtBridge(
       src: resolve(distDir, 'runtime/bridge-on-legacy.plugin.mjs')
     })
   }
+
+  addPluginTemplate({
+    filename: 'runtime/middleware.mjs',
+    src: resolve(distDir, 'runtime/middleware.mjs')
+  })
 
   // nuxt.hook('modules:done', () => {
   //   nuxt.options.plugins.unshift(plugin)

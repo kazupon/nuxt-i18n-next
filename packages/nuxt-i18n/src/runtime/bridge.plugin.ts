@@ -11,8 +11,24 @@ import {
   nuxtI18nOptions
   // @ts-ignore: resolved with tsconfig
 } from '#build/nuxti18n.loader'
+// @ts-ignore: resolved with tsconfig
+import { createLocaleFromRouteGetter } from '#i18n'
+
+import type { Route } from 'vue-router3'
+
+const getLocaleFromRoute = createLocaleFromRouteGetter(
+  localeCodes,
+  nuxtI18nOptions.routesNameSeparator,
+  nuxtI18nOptions.defaultLocaleRouteNameSuffix
+)
 
 export default defineNuxtPlugin(async nuxt => {
+  console.log('plugin setup', nuxt)
+
+  // @ts-ignore
+  const route = useRoute() as Route
+  const routeLocale = getLocaleFromRoute(route)
+
   // vue-i18n install to vue
   Vue.use(VueI18n, { bridge: true })
 
@@ -28,13 +44,34 @@ export default defineNuxtPlugin(async nuxt => {
     {
       legacy: false,
       globalInjection: true,
-      locale: 'en',
+      locale: routeLocale || nuxtI18nOptions.defaultLocale,
       ...nuxtI18nOptions.vueI18n
     },
     VueI18n
   )
 
+  async function onNavigate(
+    route: Route
+  ): Promise<[number | null, string | null, boolean?]> {
+    // TODO: should be more implementation
+    const finalLocale =
+      getLocaleFromRoute(route) || i18n.locale || i18n.defaultLocale || ''
+    console.log('onNavigate finalLocale', finalLocale)
+    await i18n.setLocale(finalLocale)
+    return [null, null, undefined]
+  }
+
+  async function setLocale(locale: string) {
+    // TODO: should be more implementation
+    i18n.global.locale.value = locale
+  }
+
+  i18n.locale = i18n.global.locale.value
+  i18n.defaultLocale = nuxtI18nOptions.defaultLocale
   i18n.localeCodes = localeCodes
+  i18n.locales = nuxtI18nOptions.locales
+  i18n.__onNavigate = onNavigate
+  i18n.setLocale = setLocale
 
   // @ts-ignore
   // install i18n instance to vue
@@ -43,9 +80,3 @@ export default defineNuxtPlugin(async nuxt => {
   // inject i18n instance to nuxt
   nuxt.provide('i18n', i18n)
 })
-
-declare module 'vue-i18n-bridge' {
-  interface I18n {
-    localeCodes: string[]
-  }
-}

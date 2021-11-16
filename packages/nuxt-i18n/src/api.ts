@@ -4,7 +4,7 @@ import { distDir } from './dirs'
 import type { Nuxt } from '@nuxt/kit'
 import type { NuxtI18nOptions } from './types'
 
-export function setupComposables(
+export function setupApi(
   options: NuxtI18nOptions,
   nuxt: Nuxt,
   mode: 'bridge' | 'bridge-on-legacy' | 'nuxt3'
@@ -16,8 +16,8 @@ export function setupComposables(
   // nuxt.options.build.transpile.push('vue-demi')
   nuxt.options.alias['#i18n'] = resolve(
     distDir,
-    `runtime/composables/${
-      mode === 'bridge' || mode === 'bridge-on-legacy' ? 'i18n' : 'nuxt3'
+    `runtime/${
+      mode === 'bridge' || mode === 'bridge-on-legacy' ? 'bridge' : 'nuxt3'
     }.mjs`
   )
 

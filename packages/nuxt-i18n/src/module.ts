@@ -9,15 +9,17 @@ import {
   installModule,
   checkNuxtCompatibilityIssues
 } from '@nuxt/kit'
+import { assign } from '@intlify/shared'
 import { setupNuxtBridge } from './bridge'
 import { setupNuxt3 } from './nuxt3'
-import { setupComposables } from './composable'
+import { setupApi } from './api'
+import { DEFAULT_OPTIONS } from './constants'
 
 import type { NuxtI18nOptions } from './types'
 
 export * from './types'
 
-const debug = createDebug('nuxt/i18n:module')
+const debug = createDebug('@nuxtjs/i18n:module')
 
 const NuxtI18nModule = defineNuxtModule<NuxtI18nOptions>({
   name: '@kazupon/nuxt-i18n-next',
@@ -25,6 +27,10 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nOptions>({
   defaults: {},
   async setup(options, nuxt) {
     const _require = createRequire(import.meta.url)
+
+    // TODO: nuxt-i18n options should be merged with defaults
+    options = assign(DEFAULT_OPTIONS, options)
+    debug('options', options)
 
     debug('setup isNuxt2?', isNuxt2(nuxt))
     if (isNuxt2(nuxt)) {
@@ -39,11 +45,11 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nOptions>({
 
       await setupNuxtBridge(options, nuxt, 'bridge')
       // await setupNuxtBridge(options, 'bridge-on-legacy')
-      setupComposables(options, nuxt, 'bridge')
+      setupApi(options, nuxt, 'bridge')
     } else if (isNuxt3(nuxt)) {
       // nuxt3
       await setupNuxt3(options, nuxt)
-      setupComposables(options, nuxt, 'nuxt3')
+      setupApi(options, nuxt, 'nuxt3')
     } else {
       // TODO:
     }

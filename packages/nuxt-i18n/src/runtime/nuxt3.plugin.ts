@@ -30,6 +30,7 @@ export default defineNuxtPlugin(async nuxt => {
   })
 
   i18n.localeCodes = localeCodes
+  i18n.locales = nuxtI18nOptions.locales
 
   // install i18n instance to vue
   app.use(i18n)

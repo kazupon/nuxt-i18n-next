@@ -51,7 +51,7 @@ export async function setupNuxt3(options: NuxtI18nOptions, nuxt: Nuxt) {
   debug('localeInfo', localeInfo)
 
   if (options.strategy !== STRATEGIES.NO_PREFIX && localeCodes.length) {
-    setupPages(options, nuxt)
+    setupPages(options, nuxt, { localeCodes })
   }
 
   // prettier-ignore
