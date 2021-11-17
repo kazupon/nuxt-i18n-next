@@ -34,7 +34,7 @@ export function setupPages(
   const { trailingSlash } = nuxt.options.router
   debug(`pagesDir: ${pagesDir}, tailingSlash: ${trailingSlash}`)
 
-  function fn(pages: NuxtI18nPage[]) {
+  extendPages((pages: NuxtI18nPage[]) => {
     const localizedPages = makePages(pages, {
       ...options,
       ...additionalOptions,
@@ -45,19 +45,7 @@ export function setupPages(
     pages.splice(0, pages.length)
     pages.unshift(...localizedPages)
     debug('made pages ...', pages)
-  }
-
-  // TODO:
-  //  This should be shimed with nuxt-bridge ...
-  //  and, We should be shimed NuxtRouteConfig / NuxtPage (e.g. `component` / `file`)
-  if (isBridge) {
-    nuxt.options.router.extendRoutes = chainFn(
-      nuxt.options.router.extendRoutes,
-      fn
-    )
-  } else {
-    extendPages(fn)
-  }
+  })
 }
 
 function makePages(
