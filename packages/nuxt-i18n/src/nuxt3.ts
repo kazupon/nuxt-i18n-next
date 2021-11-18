@@ -82,4 +82,9 @@ export async function setupNuxt3(options: NuxtI18nOptions, nuxt: Nuxt) {
     filename: 'runtime/nuxt3.plugin.mjs',
     src: resolve(distDir, 'runtime/nuxt3.plugin.mjs')
   })
+
+  addPluginTemplate({
+    filename: 'runtime/middleware3.mjs',
+    src: resolve(distDir, 'runtime/middleware3.mjs')
+  })
 }

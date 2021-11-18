@@ -39,7 +39,7 @@
     "@nuxtjs/i18n": "^7.2.0",
     "@types/debug": "^4.1.7",
     "nuxt3": "latest",
-    "unbuild": "latest",
+    "unbuild": "0.5.11",
     "vue": "npm:vue@next",
     "vue-demi": "*",
     "vue-i18n": "npm:vue-i18n@next",

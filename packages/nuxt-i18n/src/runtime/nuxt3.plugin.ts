@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 import { isEmptyObject } from '@intlify/shared'
 import { defineNuxtPlugin } from '#app'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -9,10 +10,25 @@ import {
   nuxtI18nOptions
   // @ts-ignore: resolved with tsconfig
 } from '#build/nuxti18n.loader'
+// @ts-ignore: resolved with tsconfig
+import { createLocaleFromRouteGetter } from '#i18n'
+
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
+
+const getLocaleFromRoute = createLocaleFromRouteGetter(
+  localeCodes,
+  nuxtI18nOptions.routesNameSeparator,
+  nuxtI18nOptions.defaultLocaleRouteNameSuffix
+)
 
 export default defineNuxtPlugin(async nuxt => {
   const { vueApp: app } = nuxt
-  console.log('nuxt-i18n: nuxt.js v3.x', nuxt)
+  console.log('main plugin')
+
+  const route = useRoute()
+  console.log('route', route, nuxt.route)
+  const routeLocale = route ? getLocaleFromRoute(route) : 'en'
+  console.log('routelocale', routeLocale)
 
   // TODO: lazy load
   // load messages
@@ -25,12 +41,32 @@ export default defineNuxtPlugin(async nuxt => {
   const i18n = createI18n({
     legacy: false,
     globalInjection: true,
-    locale: 'en',
+    locale: routeLocale || nuxtI18nOptions.defaultLocale,
     ...nuxtI18nOptions.vueI18n
   })
 
+  async function onNavigate(
+    route: RouteLocationNormalizedLoaded
+  ): Promise<[number | null, string | null, boolean?]> {
+    // TODO: should be more implementation
+    const finalLocale =
+      getLocaleFromRoute(route) || i18n.locale || i18n.defaultLocale || ''
+    console.log('onNavigate finalLocale', finalLocale)
+    await i18n.setLocale(finalLocale)
+    return [null, null, undefined]
+  }
+
+  async function setLocale(locale: string) {
+    // TODO: should be more implementation
+    i18n.global.locale.value = locale
+  }
+
+  i18n.locale = i18n.global.locale.value
+  i18n.defaultLocale = nuxtI18nOptions.defaultLocale
   i18n.localeCodes = localeCodes
   i18n.locales = nuxtI18nOptions.locales
+  i18n.__onNavigate = onNavigate
+  i18n.setLocale = setLocale
 
   // install i18n instance to vue
   app.use(i18n)

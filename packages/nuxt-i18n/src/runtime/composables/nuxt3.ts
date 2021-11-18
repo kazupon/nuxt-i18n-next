@@ -3,11 +3,16 @@ import { useI18nRoutingNuxt3 } from './routing/nuxt3'
 import { useI18nHead } from './head'
 
 import type { LocaleObject } from '@nuxtjs/i18n'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 declare module 'vue-i18n' {
   interface I18n {
+    locale: string
+    defaultLocale: string
     localeCodes: string[]
     locales: string[] | LocaleObject[]
+    setLocale: (locale: string) => void
+    __onNavigate: (route: RouteLocationNormalizedLoaded) => void
   }
 }
 
