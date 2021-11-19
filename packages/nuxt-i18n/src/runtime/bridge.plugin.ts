@@ -55,6 +55,14 @@ export default defineNuxtPlugin(async nuxt => {
   async function onNavigate(
     route: Route
   ): Promise<[number | null, string | null, boolean?]> {
+    // NOTE: for demo only
+    if (process.client) {
+      window.parent.postMessage(
+        { source: 'bridge', url: window.location.href },
+        '*'
+      )
+    }
+
     // TODO: should be more implementation
     const finalLocale =
       getLocaleFromRoute(route) || i18n.locale || i18n.defaultLocale || ''

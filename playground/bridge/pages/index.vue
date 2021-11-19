@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>{{ $t('welcome') }}</h1>
+    <h1>Nuxt Bridge</h1>
+    <h2>{{ $t('welcome') }}</h2>
     <h3>{{ t('hello', { name: '@nuxt/i18n next on Nuxt Bridge' }) }}</h3>
     <form>
       <select id="locale-select" v-model="locale">

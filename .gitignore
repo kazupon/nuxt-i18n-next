@@ -1,4 +1,5 @@
 dist
+dist-ssr
 temp
 coverage
 node_modules
@@ -13,6 +14,7 @@ debug.log
 
 *.log
 *.swp
+*.local
 *~
 .env
 .nuxt

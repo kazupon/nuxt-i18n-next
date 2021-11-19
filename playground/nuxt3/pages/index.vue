@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>{{ t('welcome') }}</h1>
+    <h1>Nuxt3</h1>
+    <h2>{{ t('welcome') }}</h2>
     <h3>{{ t('hello', { name: '@nuxt/i18n next on Nuxt 3' }) }}</h3>
     <form>
       <select id="locale-select" v-model="locale">
