@@ -27,7 +27,9 @@ export default defineNuxtPlugin(async nuxt => {
 
   // @ts-ignore
   const route = useRoute() as Route
-  const routeLocale = getLocaleFromRoute(route)
+  console.log('route', route)
+  const routeLocale = getLocaleFromRoute(route) || 'en'
+  console.log('routelocale', routeLocale)
 
   // vue-i18n install to vue
   Vue.use(VueI18n, { bridge: true })

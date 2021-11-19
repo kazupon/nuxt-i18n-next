@@ -12,7 +12,6 @@ declare module 'vue-i18n' {
     localeCodes: string[]
     locales: string[] | LocaleObject[]
     setLocale: (locale: string) => void
-    __onNavigate: (route: RouteLocationNormalizedLoaded) => void
   }
 }
 

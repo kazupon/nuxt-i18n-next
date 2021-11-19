@@ -1,5 +1,4 @@
 import { createI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
 import { isEmptyObject } from '@intlify/shared'
 import { defineNuxtPlugin } from '#app'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -22,12 +21,12 @@ const getLocaleFromRoute = createLocaleFromRouteGetter(
 )
 
 export default defineNuxtPlugin(async nuxt => {
-  const { vueApp: app } = nuxt
+  const { vueApp: app, $router } = nuxt
   console.log('main plugin')
 
-  const route = useRoute()
-  console.log('route', route, nuxt.route)
-  const routeLocale = route ? getLocaleFromRoute(route) : 'en'
+  const route = $router.currentRoute
+  console.log('route', route, $router)
+  const routeLocale = route ? getLocaleFromRoute(route.value) : 'en'
   console.log('routelocale', routeLocale)
 
   // TODO: lazy load
@@ -65,7 +64,6 @@ export default defineNuxtPlugin(async nuxt => {
   i18n.defaultLocale = nuxtI18nOptions.defaultLocale
   i18n.localeCodes = localeCodes
   i18n.locales = nuxtI18nOptions.locales
-  i18n.__onNavigate = onNavigate
   i18n.setLocale = setLocale
 
   // install i18n instance to vue
@@ -73,4 +71,23 @@ export default defineNuxtPlugin(async nuxt => {
 
   // inject i18n instance to nuxt
   nuxt.provide('i18n', i18n)
+
+  // @ts-ignore
+  watch(
+    () => $router.currentRoute.value.path,
+    async (val: string) => {
+      console.log('chagne route path', val)
+      if (val == null) {
+        return
+      }
+      const nextRoute = $router.currentRoute.value
+      console.log('current route', nextRoute)
+      const [status, redirectPath, preserveQuery] = await onNavigate(nextRoute)
+      // if (status && redirectPath) {
+      //   const query = preserveQuery ? maybeNextRoute.query : undefined
+      //   // TODO: should be more implementation
+      //   console.log(`redirect to ${query}`)
+      // }
+    }
+  )
 })
