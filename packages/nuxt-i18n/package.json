@@ -1,6 +1,6 @@
 {
   "name": "@kazupon/nuxt-i18n-next",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "⚠️ This nuxt module is PoC of `@nuxtjs/i18n` next",
   "homepage": "https://github.com/kazupon/nuxt-i18n-next#readme",
   "bugs": {
