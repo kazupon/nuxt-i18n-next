@@ -23,8 +23,8 @@ import {
   STRATEGIES
 } from './constants'
 
-import type { Nuxt } from '@nuxt/kit'
 import type { NuxtI18nOptions } from './types'
+import type { Nuxt } from '@nuxt/schema'
 import type { LoaderOptions } from './loader'
 
 const debug = createDebug('@nuxtjs/i18n:nuxt3')

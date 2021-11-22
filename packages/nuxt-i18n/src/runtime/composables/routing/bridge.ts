@@ -1,4 +1,5 @@
 import { useNuxtApp } from '#app'
+import { getCurrentInstance, computed } from '@vue/composition-api'
 import VueRouter from 'vue-router3'
 import { assign, isString, isSymbol } from '@intlify/shared'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

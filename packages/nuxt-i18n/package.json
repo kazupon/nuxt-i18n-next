@@ -35,11 +35,12 @@
     "unplugin": "^0.2.19"
   },
   "devDependencies": {
+    "@nuxt/schema": "npm:@nuxt/schema-edge@latest",
     "@nuxt/types": "^2.15.8",
     "@nuxtjs/i18n": "^7.2.0",
     "@types/debug": "^4.1.7",
     "nuxt3": "latest",
-    "unbuild": "0.5.11",
+    "unbuild": "0.5.13",
     "vue": "npm:vue@next",
     "vue-demi": "*",
     "vue-i18n": "npm:vue-i18n@next",

@@ -1,7 +1,6 @@
 import { createRequire } from 'module'
 import createDebug from 'debug'
 import {
-  Nuxt,
   defineNuxtModule,
   isNuxt2,
   isNuxt3,
@@ -15,6 +14,7 @@ import { setupNuxt3 } from './nuxt3'
 import { setupApi } from './api'
 import { DEFAULT_OPTIONS } from './constants'
 
+import type { Nuxt } from '@nuxt/schema'
 import type { NuxtI18nOptions } from './types'
 
 export * from './types'
@@ -26,7 +26,7 @@ const NuxtI18nModule = defineNuxtModule<NuxtI18nOptions>({
   configKey: 'i18n',
   defaults: {},
   async setup(options, nuxt) {
-    const _require = createRequire(import.meta.url)
+    // const _require = createRequire(import.meta.url)
 
     // TODO: nuxt-i18n options should be merged with defaults
     options = assign(DEFAULT_OPTIONS, options)

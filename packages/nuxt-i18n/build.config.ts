@@ -11,5 +11,13 @@ export default defineBuildConfig({
       format: 'esm',
       declaration: true
     }
+  ],
+  externals: [
+    '@nuxt/schema',
+    'defu',
+    'std-env',
+    'create-require',
+    'scule',
+    'jiti'
   ]
 })

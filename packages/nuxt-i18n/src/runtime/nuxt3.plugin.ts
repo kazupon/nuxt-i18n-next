@@ -82,12 +82,6 @@ export default defineNuxtPlugin(async nuxt => {
       }
       const nextRoute = $router.currentRoute.value
 
-      // NOTE: for demo only
-      window.parent.postMessage(
-        { source: 'nuxt3', url: window.location.href },
-        '*'
-      )
-
       console.log('current route', nextRoute)
       const [status, redirectPath, preserveQuery] = await onNavigate(nextRoute)
       // if (status && redirectPath) {

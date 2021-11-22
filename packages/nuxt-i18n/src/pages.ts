@@ -3,9 +3,9 @@ import { extendPages } from '@nuxt/kit'
 import { isString } from '@intlify/shared'
 import { STRATEGIES } from './constants'
 
-import type { Nuxt, NuxtPage } from '@nuxt/kit'
 import type { NuxtRouteConfig } from '@nuxt/types/config/router'
 import type { NuxtI18nOptions } from './types'
+import type { Nuxt, NuxtPage } from '@nuxt/schema'
 
 const debug = createDebug('@nuxtjs/i18n:pages')
 

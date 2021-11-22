@@ -24,7 +24,7 @@ import {
   STRATEGIES
 } from './constants'
 
-import type { Nuxt } from '@nuxt/kit'
+import type { Nuxt } from '@nuxt/schema'
 import type { NuxtI18nOptions } from './types'
 import type { LoaderOptions } from './loader'
 

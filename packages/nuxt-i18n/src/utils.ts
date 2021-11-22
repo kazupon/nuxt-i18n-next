@@ -10,8 +10,8 @@ import { parse } from 'pathe'
 import { promises as fs } from 'fs'
 import { resolveFiles } from '@nuxt/kit'
 
-import type { NuxtOptions, Nuxt } from '@nuxt/kit'
 import type { NuxtI18nOptions, LocaleObject, LocaleInfo } from './types'
+import type { Nuxt, NuxtOptions } from '@nuxt/schema'
 
 export function getNormalizedLocales(
   locales: NuxtI18nOptions['locales']

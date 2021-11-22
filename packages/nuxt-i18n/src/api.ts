@@ -1,7 +1,7 @@
 import { resolve } from 'pathe'
 import { distDir } from './dirs'
 
-import type { Nuxt } from '@nuxt/kit'
+import type { Nuxt } from '@nuxt/schema'
 import type { NuxtI18nOptions } from './types'
 
 export function setupApi(
