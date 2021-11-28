@@ -11,8 +11,13 @@
     "url": "git+https://github.com/kazupon/nuxt-i18n-next.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "playground/bridge",
+    "playground/nuxt3"
   ],
+  "resolutions": {
+    "@kazupon/nuxt-i18n-next": "workspace:./packages/nuxt-i18n"
+  },
   "license": "MIT",
   "author": {
     "name": "kazuya kawaguchi",
