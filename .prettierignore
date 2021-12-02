@@ -1,4 +1,5 @@
 dist
 playground
+test/fixtures
 coverage
 .vscode/settings.json

@@ -4,7 +4,7 @@ import nuxtMiddleware from '../middleware'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const i18nMiddleware = async (context: any) => {
   const { app, isHMR } = context
-  console.log('middleware2', context.route)
+  console.log('middleware2', context)
 
   if (isHMR) {
     return

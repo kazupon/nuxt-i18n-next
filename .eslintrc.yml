@@ -10,8 +10,10 @@ extends:
   - 'prettier'
 plugins:
   - '@typescript-eslint'
+  - 'mocha'
 parserOptions:
   parser: '@typescript-eslint/parser'
   sourceType: 'module'
 rules:
   '@typescript-eslint/ban-ts-comment': 'off'
+  'mocha/no-mocha-arrows': 'error'
