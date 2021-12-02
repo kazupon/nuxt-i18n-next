@@ -24,7 +24,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-mocha": "^9.0.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "execa": "^6.0.0",
     "globby": "^11.0.4",
     "jiti": "^1.12.9",
     "listhen": "^0.2.5",
